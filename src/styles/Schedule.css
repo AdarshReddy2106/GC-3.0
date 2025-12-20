@@ -1,0 +1,208 @@
+/* Schedule Page Styles */
+.schedule-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0e13 0%, #1a1e23 100%);
+  padding: 120px 20px 60px;
+}
+
+.schedule-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 50px;
+  color: white;
+  letter-spacing: 8px;
+  text-shadow: 0 0 30px rgba(180, 40, 60, 0.6);
+}
+
+/* Sport Selector */
+.sport-selector {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.sport-btn {
+  padding: 12px 28px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sport-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.sport-btn.active {
+  background: linear-gradient(135deg, rgba(180, 40, 60, 0.6), rgba(200, 60, 80, 0.4));
+  color: white;
+  border: 1px solid rgba(200, 60, 80, 0.5);
+  box-shadow: 0 4px 20px rgba(180, 40, 60, 0.4);
+  transform: scale(1.05);
+}
+
+/* Matches Container */
+.matches-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Match Card */
+.match-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.match-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(180, 40, 60, 0.3);
+}
+
+/* Match Header */
+.match-header {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.match-number {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+}
+
+.match-info {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Match Body */
+.match-body {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Team Box */
+.team-box {
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 65px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.team-box:hover {
+  transform: scale(1.02);
+}
+
+.team-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* VS Section */
+.vs-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  gap: 8px;
+}
+
+.score-display {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: rgba(200, 60, 80, 0.9);
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(200, 60, 80, 0.4);
+}
+
+.vs-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 3px;
+}
+
+.match-time {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .schedule-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+
+  .match-body {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .team-box {
+    width: 100%;
+  }
+
+  .vs-section {
+    min-width: auto;
+  }
+
+  .sport-selector {
+    gap: 8px;
+  }
+
+  .sport-btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
