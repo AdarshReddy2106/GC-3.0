@@ -1,0 +1,43 @@
+.leaderboard-hero {
+    height: 40vh;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070') center/cover;
+}
+
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    margin: -30px 0 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.tab-btn {
+    background: #1f2933;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-family: 'Syncopate', sans-serif;
+}
+
+.tab-btn.active {
+    background: var(--primary);
+}
+
+.podium {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.podium-item {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.podium-item.rank-1 { height: 300px; border-top: 4px solid #ffd700; }
