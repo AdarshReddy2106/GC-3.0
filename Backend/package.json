@@ -1,0 +1,21 @@
+{
+  "name": "GC3-backend",
+  "version": "1.0.0",
+  "description": "Backend API to serve schedules and leaderboards from Excel for GC2k25",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "Adarsh",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "xlsx": "^0.19.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
