@@ -1,79 +1,52 @@
 import { useEffect, useState } from "react";
-
-const API = "http://localhost:5000/api/schedule";
+import "../styles/Schedule.css";
 
 export default function Schedule() {
-  const [days, setDays] = useState([]);
-  const [selectedDay, setSelectedDay] = useState("");
-  const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [gender, setGender] = useState("men");
+  const [matches, setMatches] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${API}/days`)
-      .then(res => res.json())
-      .then(setDays)
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    if (!selectedDay) return;
-
-    setLoading(true);
-    fetch(`${API}/${encodeURIComponent(selectedDay)}`)
-      .then(res => res.json())
-      .then(data => {
-        setRows(data);
-        setLoading(false);
+    setError(null);
+    fetch(`http://localhost:5000/api/volleyball/schedule/${gender}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch schedule");
+        return res.json();
       })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, [selectedDay]);
+      .then(data => setMatches(data))
+      .catch(err => setError(err.message));
+  }, [gender]);
 
   return (
-    <div style={{ padding: "24px" }}>
-      <h2>Match Schedule</h2>
+    <div className="page">
+      <h1>Volleyball Schedule</h1>
 
-      <select
-        value={selectedDay}
-        onChange={e => setSelectedDay(e.target.value)}
-        style={{ padding: "8px", marginBottom: "16px" }}
-      >
-        <option value="">Select Day</option>
-        {days.map(day => (
-          <option key={day} value={day}>
-            {day}
-          </option>
+      <div className="tabs">
+        <button className={gender==="men" ? "active" : ""} onClick={()=>setGender("men")}>Men</button>
+        <button className={gender==="women" ? "active" : ""} onClick={()=>setGender("women")}>Women</button>
+      </div>
+
+      {error && <div style={{color:"red",textAlign:"center"}}>{error}</div>}
+
+      <div className="schedule">
+        {matches.length === 0 && !error && (
+          <div style={{textAlign:"center",color:"#555"}}>No matches found.</div>
+        )}
+        {matches.map((m, i) => (
+          <div className="match-card" key={i}>
+            <div className="teams">
+              <span>{m.TeamA}</span>
+              <strong>vs</strong>
+              <span>{m.TeamB}</span>
+            </div>
+            <div className="meta">
+              <span>{m.Date} | {m.Time}</span>
+              <span>{m.Venue}</span>
+              <span className="round">{m.Round}</span>
+            </div>
+          </div>
         ))}
-      </select>
-
-      {loading && <p>Loading schedule...</p>}
-
-      {!loading && rows.length > 0 && (
-        <table border="1" cellPadding="8" cellSpacing="0">
-          <thead>
-            <tr>
-              {Object.keys(rows[0]).map((col, i) => (
-                <th key={i}>{col}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={i}>
-                {Object.values(row).map((val, j) => (
-                  <td key={j}>{val}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {!loading && selectedDay && rows.length === 0 && (
-        <p>No matches available.</p>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,79 +1,69 @@
 import { useEffect, useState } from "react";
-
-const API = "http://localhost:5000/api/leaderboard";
+import "../styles/Schedule.css";
 
 export default function Leaderboard() {
-  const [tables, setTables] = useState([]);
-  const [selectedTable, setSelectedTable] = useState("");
-  const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [gender, setGender] = useState("men");
+  const [columns, setColumns] = useState([]);
+  const [pools, setPools] = useState({});
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(API)
-      .then(res => res.json())
-      .then(setTables)
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    if (!selectedTable) return;
-
-    setLoading(true);
-    fetch(`${API}/${encodeURIComponent(selectedTable)}`)
-      .then(res => res.json())
-      .then(data => {
-        setRows(data);
-        setLoading(false);
+    setError(null);
+    fetch(`http://localhost:5000/api/volleyball/leaderboard/${gender}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch leaderboard");
+        return res.json();
       })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, [selectedTable]);
+      .then(data => {
+        setColumns(data.columns || []);
+        setPools(data.pools || {});
+      })
+      .catch(err => setError(err.message));
+  }, [gender]);
 
   return (
-    <div style={{ padding: "24px" }}>
-      <h2>Leaderboard</h2>
+    <div className="page">
+      <h1>Volleyball Leaderboard</h1>
 
-      <select
-        value={selectedTable}
-        onChange={e => setSelectedTable(e.target.value)}
-        style={{ padding: "8px", marginBottom: "16px" }}
-      >
-        <option value="">Select Sport</option>
-        {tables.map(table => (
-          <option key={table} value={table}>
-            {table}
-          </option>
-        ))}
-      </select>
+      <div className="tabs">
+        <button className={gender==="men" ? "active" : ""} onClick={()=>setGender("men")}>Men</button>
+        <button className={gender==="women" ? "active" : ""} onClick={()=>setGender("women")}>Women</button>
+      </div>
 
-      {loading && <p>Loading leaderboard...</p>}
+      {error && <div style={{color:"red",textAlign:"center"}}>{error}</div>}
 
-      {!loading && rows.length > 0 && (
-        <table border="1" cellPadding="8" cellSpacing="0">
-          <thead>
-            <tr>
-              {Object.keys(rows[0]).map((col, i) => (
-                <th key={i}>{col}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={i}>
-                {Object.values(row).map((val, j) => (
-                  <td key={j}>{val}</td>
+      {Object.keys(pools).length === 0 && !error && (
+        <div style={{textAlign:"center",color:"#555"}}>No data found.</div>
+      )}
+
+      {Object.entries(pools).map(([poolName, table]) => (
+        <div key={poolName} style={{marginBottom: "2rem"}}>
+          <h2 style={{textAlign:"center", color:"#0b5ed7"}}>Pool {poolName}</h2>
+          <table className="leaderboard">
+            <thead>
+              <tr>
+                {columns.map(col => (
+                  <th key={col.key}>{col.label}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {!loading && selectedTable && rows.length === 0 && (
-        <p>No leaderboard data available.</p>
-      )}
+            </thead>
+            <tbody>
+              {table.length === 0 && (
+                <tr>
+                  <td colSpan={columns.length} style={{textAlign:"center",color:"#555"}}>No data found.</td>
+                </tr>
+              )}
+              {table.map((row, i) => (
+                <tr key={i}>
+                  {columns.map(col => (
+                    <td key={col.key}>{row[col.key]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
     </div>
   );
 }
