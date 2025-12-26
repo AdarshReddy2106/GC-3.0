@@ -1,15 +1,13 @@
 import express from "express";
 import cors from "cors";
-import volleyballRoutes from "./routes/volleyball.js";
+import sportsRoutes from "./routes/sports.js";
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/volleyball", volleyballRoutes);
+app.use("/api", sportsRoutes);
 
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+app.listen(5000, () => {
+  console.log("Backend running on http://localhost:5000");
 });
