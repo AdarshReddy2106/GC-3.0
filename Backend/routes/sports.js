@@ -1,7 +1,6 @@
 import express from "express";
 import { readExcelSheet } from "../utils/excelReader.js";
 import { excelDateToString, getSportPrefix } from "../utils/helpers.js";
-
 const router = express.Router();
 
 /* ===================== SCHEDULE ===================== */
@@ -31,6 +30,7 @@ router.get("/:sport/schedule/:gender", (req, res) => {
           Score: r["__EMPTY_7"] || ""
         }));
     }
+
 
     /* ---------- BADMINTON ---------- */
     if (sport === "badminton") {
@@ -115,32 +115,35 @@ router.get("/:sport/schedule/:gender", (req, res) => {
     }
     /* ---------- CHESS ---------- */
     if (sport === "chess") {
-  let currentRound = "";
-  let currentDate = "";
-  let currentTime = "";
-  let currentVenue = "";
+      let currentRound = "";
+      let currentDate = "";
+      let currentTime = "";
+      let currentVenue = "";
 
-  const data = raw
-    .filter(r => r["TEAM I"] || r["TEAM II"])
-    .map(r => {
-      if (r["ROUND NO."]) currentRound = r["ROUND NO."];
-      if (r["DATE"]) currentDate = r["DATE"];
-      if (r["TIME"]) currentTime = r["TIME"];
-      if (r["VENUE"]) currentVenue = r["VENUE"];
+      const data = raw
+        .filter(r => r["__EMPTY_1"] || r["__EMPTY_2"]) // TEAM I / TEAM II
+        .map(r => {
+          // ROUND NO is in first column when present
+          if (r["__EMPTY"]) currentRound = r["__EMPTY"];
 
-      return {
-        Round: currentRound,
-        TeamA: r["TEAM I"] || "",
-        TeamB: r["TEAM II"] || "",
-        Date: currentDate,
-        Time: currentTime,
-        Venue: currentVenue,
-        Score: r["SCORE"] || ""
-      };
-    });
+          // Date / Time / Venue are repeated via merged cells
+          if (r["__EMPTY_3"]) currentDate = r["__EMPTY_3"];
+          if (r["__EMPTY_4"]) currentTime = r["__EMPTY_4"];
+          if (r["__EMPTY_5"]) currentVenue = r["__EMPTY_5"];
 
-  return res.json(data);
-}
+          return {
+            Round: currentRound,
+            TeamA: r["__EMPTY_1"] || "",
+            TeamB: r["__EMPTY_2"] || "",
+            Date: currentDate,
+            Time: currentTime,
+            Venue: currentVenue,
+            Score: r["__EMPTY_6"] || ""
+          };
+        });
+
+      return res.json(data);
+    }
 
 
     res.json(data);

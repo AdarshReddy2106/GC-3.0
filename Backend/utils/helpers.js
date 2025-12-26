@@ -15,5 +15,6 @@ export function getSportPrefix(sport) {
   if (sport === "football") return "FB"; 
   if (sport === "chess") return "CH";
   if (sport === "basketball") return "BB"; 
+  if (sport === "athletics") return "AT";
   throw new Error("Invalid sport");
 }

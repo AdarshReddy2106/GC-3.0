@@ -25,6 +25,10 @@ export default function Leaderboard() {
           className={sport==="chess"?"active":""}>
           Chess
         </button>
+        <button onClick={()=>setSport("athletics")}
+          className={sport==="athletics"?"active":""}>
+          Athletics
+        </button>
         <button onClick={()=>setSport("basketball")}
           className={sport==="basketball"?"active":""}>
           Basketball
