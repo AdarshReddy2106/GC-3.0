@@ -48,6 +48,100 @@ router.get("/:sport/schedule/:gender", (req, res) => {
           Score: r["__EMPTY_7"] || ""
         }));
     }
+    /* ---------- BASKETBALL ---------- */
+    if (sport === "basketball") {
+      data = raw
+        .filter(r => r["__EMPTY_1"] && r["__EMPTY_3"])
+        .map(r => ({
+          TeamA: r["__EMPTY_1"],
+          TeamB: r["__EMPTY_3"],
+          Date:
+            typeof r["__EMPTY_4"] === "number"
+              ? excelDateToString(r["__EMPTY_4"])
+              : r["__EMPTY_4"],
+          Time: r["__EMPTY_5"],
+          Venue: r["__EMPTY_6"],
+          Score: r["__EMPTY_7"] || ""
+        }));
+    }
+
+    /* ---------- TABLE TENNIS ---------- */
+    if (sport === "tabletennis") {
+      data = raw
+        .filter(r => r["__EMPTY_1"] && r["__EMPTY_3"])
+        .map(r => ({
+          TeamA: r["__EMPTY_1"],
+          TeamB: r["__EMPTY_3"],
+          Date:
+            typeof r["__EMPTY_4"] === "number"
+              ? excelDateToString(r["__EMPTY_4"])
+              : r["__EMPTY_4"],
+          Time: r["__EMPTY_5"],
+          Venue: r["__EMPTY_6"],
+          Score: r["__EMPTY_7"] || ""
+        }));
+    }
+    /* ---------- CRICKET ---------- */
+    if (sport === "cricket") {
+      data = raw
+        .filter(r => r["__EMPTY_1"] && r["__EMPTY_3"])
+        .map(r => ({
+          TeamA: r["__EMPTY_1"],
+          TeamB: r["__EMPTY_3"],
+          Date:
+            typeof r["__EMPTY_4"] === "number"
+              ? excelDateToString(r["__EMPTY_4"])
+              : r["__EMPTY_4"],
+          Time: r["__EMPTY_5"],
+          Venue: r["__EMPTY_6"],
+          Score: r["__EMPTY_7"] || ""
+        }));
+        }
+    /* ---------- FOOTBALL ---------- */
+    if (sport === "football") {
+      data = raw
+        .filter(r => r["__EMPTY_1"] && r["__EMPTY_3"])
+        .map(r => ({
+          TeamA: r["__EMPTY_1"],
+          TeamB: r["__EMPTY_3"],
+          Date:
+            typeof r["__EMPTY_4"] === "number"
+              ? excelDateToString(r["__EMPTY_4"])
+              : r["__EMPTY_4"],
+          Time: r["__EMPTY_5"],
+          Venue: r["__EMPTY_6"],
+          Score: r["__EMPTY_7"] || ""
+        }));
+    }
+    /* ---------- CHESS ---------- */
+    if (sport === "chess") {
+  let currentRound = "";
+  let currentDate = "";
+  let currentTime = "";
+  let currentVenue = "";
+
+  const data = raw
+    .filter(r => r["TEAM I"] || r["TEAM II"])
+    .map(r => {
+      if (r["ROUND NO."]) currentRound = r["ROUND NO."];
+      if (r["DATE"]) currentDate = r["DATE"];
+      if (r["TIME"]) currentTime = r["TIME"];
+      if (r["VENUE"]) currentVenue = r["VENUE"];
+
+      return {
+        Round: currentRound,
+        TeamA: r["TEAM I"] || "",
+        TeamB: r["TEAM II"] || "",
+        Date: currentDate,
+        Time: currentTime,
+        Venue: currentVenue,
+        Score: r["SCORE"] || ""
+      };
+    });
+
+  return res.json(data);
+}
+
 
     res.json(data);
   } catch (err) {
@@ -137,6 +231,124 @@ router.get("/:sport/leaderboard/:gender", (req, res) => {
 
       return res.json({ columns, pools });
     }
+    /* ---------- BASKETBALL ---------- */
+    if (sport === "basketball") {
+      columns = [
+        { key: "TEAM", label: "TEAM" },
+        { key: "MATCHES PLAYED", label: "MP" },
+        { key: "MATCHES WON", label: "MW" },
+        { key: "MATCHES DRAWN", label: "MD" },
+        { key: "MATCHES LOST", label: "ML" },
+        { key: "POINTS", label: "PTS" }
+      ];
+
+      raw
+        .filter(r => r["TEAM"] && r["POOL"])
+        .forEach(r => {
+          const pool = r["POOL"];
+          if (!pools[pool]) pools[pool] = [];
+          pools[pool].push(r);
+        });
+
+      return res.json({ columns, pools });
+    }
+
+    /* ---------- CHESS ---------- */
+    if (sport === "chess") {
+      const columns = [
+        { key: "TEAM", label: "TEAM" },
+        { key: "MATCHES PLAYED", label: "MP" },
+        { key: "MATCHES WON", label: "MW" },
+        { key: "MATCHES DRAWN", label: "MD" },
+        { key: "MATCHES LOST", label: "ML" },
+        { key: "POINTS", label: "PTS" },
+        { key: "BOARDS WON", label: "BW" },
+        { key: "BOARDS LOST", label: "BL" },
+        { key: "BOARD DIFFERENCE", label: "BD" }
+      ];
+
+      // Single table — no pools
+      const pools = {
+        ALL: raw.filter(r => r["TEAM"])
+      };
+
+      return res.json({ columns, pools });
+    }
+
+
+    /* ---------- TABLE TENNIS ---------- */
+    if (sport === "tabletennis") {
+      columns = [
+        { key: "TEAM", label: "TEAM" },
+        { key: "MATCH PLAYED", label: "MP" },
+        { key: "MATCH WON", label: "MW" },
+        { key: "MATCH LOST", label: "ML" },
+        { key: "POINT", label: "PTS" },
+        { key: "GAMES WON", label: "GW" },
+        { key: "GAMES LOST", label: "GL" },
+        { key: "GAME DIFFERENCE", label: "GD" }
+      ];
+
+      raw
+        .filter(r => r["TEAM"] && r["POOL"])
+        .forEach(r => {
+          const pool = r["POOL"]; // A or B
+          if (!pools[pool]) pools[pool] = [];
+
+          pools[pool].push(r);
+        });
+
+      return res.json({ columns, pools });
+    }
+    /* ---------- CRICKET ---------- */
+    if (sport === "cricket") {
+      columns = [
+        { key: "TEAM", label: "TEAM" },
+        { key: "MP", label: "MP" },
+        { key: "MW", label: "W" },
+        { key: "MD", label: "D" },
+        { key: "ML", label: "L" },
+        { key: "POINT", label: "PTS" },
+        { key: "NRR", label: "NRR" }
+      ];
+
+      raw
+        .filter(r => r["TEAM"] && r["POOL"])
+        .forEach(r => {
+          const pool = r["POOL"]; // A / B
+          if (!pools[pool]) pools[pool] = [];
+          pools[pool].push(r);
+        });
+
+      return res.json({ columns, pools });
+    }
+    /* ---------- FOOTBALL ---------- */
+    if (sport === "football") {
+      columns = [
+        { key: "TEAM", label: "TEAM" },
+        { key: "MP", label: "MP" },
+        { key: "MW", label: "W" },
+        { key: "MD", label: "D" },
+        { key: "ML", label: "L" },
+        { key: "POINT", label: "PTS" },
+        { key: "FOR", label: "FOR" },
+        { key: "AGAINST", label: "AGAINST" },
+        { key: "GD", label: "GD" }
+      ];
+
+      raw
+        .filter(r => r["TEAM"] && r["POOL"])
+        .forEach(r => {
+          const pool = r["POOL"];
+          if (!pools[pool]) pools[pool] = [];
+          pools[pool].push(r);
+        });
+
+      return res.json({ columns, pools });
+    }
+
+
+
 
   } catch (err) {
     res.status(500).json({ error: err.message });

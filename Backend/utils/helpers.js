@@ -10,5 +10,10 @@ export function excelDateToString(serial) {
 export function getSportPrefix(sport) {
   if (sport === "volleyball") return "VB";
   if (sport === "badminton") return "BT";
+  if (sport === "tabletennis") return "TT";
+  if (sport === "cricket") return "CR";     
+  if (sport === "football") return "FB"; 
+  if (sport === "chess") return "CH";
+  if (sport === "basketball") return "BB"; 
   throw new Error("Invalid sport");
 }

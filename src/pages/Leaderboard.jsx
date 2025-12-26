@@ -21,10 +21,24 @@ export default function Leaderboard() {
       <h1>Leaderboard</h1>
 
       <div className="tabs">
+        <button onClick={()=>setSport("chess")}
+          className={sport==="chess"?"active":""}>
+          Chess
+        </button>
+        <button onClick={()=>setSport("basketball")}
+          className={sport==="basketball"?"active":""}>
+          Basketball
+        </button>
         <button className={sport==="volleyball"?"active":""}
           onClick={()=>setSport("volleyball")}>Volleyball</button>
         <button className={sport==="badminton"?"active":""}
           onClick={()=>setSport("badminton")}>Badminton</button>
+        <button className={sport==="tabletennis" ? "active" : ""}onClick={()=>setSport("tabletennis")}
+          >Table Tennis</button>
+        <button className={sport==="cricket" ? "active" : ""}onClick={()=>setSport("cricket")}
+          >Cricket</button>
+        <button className={sport==="football" ? "active" : ""}onClick={()=>setSport("football")}
+          >Football</button>
       </div>
 
       <div className="tabs">
