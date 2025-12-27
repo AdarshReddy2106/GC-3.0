@@ -57,15 +57,19 @@ export default function Leaderboard() {
       });
   }, [sport, gender]);
 
+  const noGenderFilterSports = ["chess", "football", "cricket"];
+
   return (
     <>
       <Sidebar selectedSport={sport} onSelect={setSport} />
       <div className="page">
         <h1>OVERALL LEADERBOARD</h1>
-        <div className="tabs">
-          <button className={gender === "men" ? "active" : ""} onClick={() => setGender("men")}>Men</button>
-          <button className={gender === "women" ? "active" : ""} onClick={() => setGender("women")}>Women</button>
-        </div>
+        {!noGenderFilterSports.includes(sport) && (
+          <div className="tabs">
+            <button className={gender === "men" ? "active" : ""} onClick={() => setGender("men")}>Men</button>
+            <button className={gender === "women" ? "active" : ""} onClick={() => setGender("women")}>Women</button>
+          </div>
+        )}
         <div className="leaderboard-section">
           {Object.entries(pools).map(([pool, rows]) => (
             <div key={pool}>
@@ -83,7 +87,18 @@ export default function Leaderboard() {
                       <td>
                         <Medal rank={i + 1} />
                       </td>
-                      {columns.map(c => <td key={c.key}>{r[c.key]}</td>)}
+                      {columns.map(c => (
+                        <td key={c.key}>
+                          {/* Use r[c.key] or r[c.key.toUpperCase()] or r[c.label] */}
+                          {r[c.key] !== undefined
+                            ? r[c.key]
+                            : r[c.key.toUpperCase()] !== undefined
+                              ? r[c.key.toUpperCase()]
+                              : r[c.label] !== undefined
+                                ? r[c.label]
+                                : ""}
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>
