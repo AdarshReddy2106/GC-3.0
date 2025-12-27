@@ -1,5 +1,46 @@
 import { useEffect, useState } from "react";
-import "../styles/Schedule.css";
+import "../styles/Leaderboard.css";
+
+const sports = [
+  { key: "chess", label: "Chess", icon: "/icons/chess.svg" },
+  { key: "athletics", label: "Athletics", icon: "/icons/athletics.svg" },
+  { key: "basketball", label: "Basketball", icon: "/icons/basketball.svg" },
+  { key: "volleyball", label: "Volleyball", icon: "/icons/volleyball.svg" },
+  { key: "badminton", label: "Badminton", icon: "/icons/badminton.svg" },
+  { key: "tabletennis", label: "Table Tennis", icon: "/icons/tabletennis.svg" },
+  { key: "cricket", label: "Cricket", icon: "/icons/cricket.svg" },
+  { key: "football", label: "Football", icon: "/icons/football.svg" }
+];
+
+function Sidebar({ selectedSport, onSelect }) {
+  return (
+    <div className="sidebar">
+      <div className="sidebar-title">LEADERBOARD</div>
+      <div className="sidebar-desc">
+        Select a Sport to see past Matches and Results
+      </div>
+      <div className="sidebar-sports">
+        {sports.map(s => (
+          <div
+            key={s.key}
+            className={`sidebar-sport${selectedSport === s.key ? " selected" : ""}`}
+            onClick={() => onSelect(s.key)}
+          >
+            <img src={s.icon} alt={s.label} />
+            <span>{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Medal({ rank }) {
+  if (rank === 1) return <span className="medal gold">🥇</span>;
+  if (rank === 2) return <span className="medal silver">🥈</span>;
+  if (rank === 3) return <span className="medal bronze">🥉</span>;
+  return rank;
+}
 
 export default function Leaderboard() {
   const [sport, setSport] = useState("volleyball");
@@ -11,66 +52,46 @@ export default function Leaderboard() {
     fetch(`http://localhost:5000/api/${sport}/leaderboard/${gender}`)
       .then(res => res.json())
       .then(data => {
-        setColumns(data.columns);
-        setPools(data.pools);
+        setColumns(data.columns || []);
+        setPools(data.pools || {});
       });
   }, [sport, gender]);
 
   return (
-    <div className="page">
-      <h1>Leaderboard</h1>
-
-      <div className="tabs">
-        <button onClick={()=>setSport("chess")}
-          className={sport==="chess"?"active":""}>
-          Chess
-        </button>
-        <button onClick={()=>setSport("athletics")}
-          className={sport==="athletics"?"active":""}>
-          Athletics
-        </button>
-        <button onClick={()=>setSport("basketball")}
-          className={sport==="basketball"?"active":""}>
-          Basketball
-        </button>
-        <button className={sport==="volleyball"?"active":""}
-          onClick={()=>setSport("volleyball")}>Volleyball</button>
-        <button className={sport==="badminton"?"active":""}
-          onClick={()=>setSport("badminton")}>Badminton</button>
-        <button className={sport==="tabletennis" ? "active" : ""}onClick={()=>setSport("tabletennis")}
-          >Table Tennis</button>
-        <button className={sport==="cricket" ? "active" : ""}onClick={()=>setSport("cricket")}
-          >Cricket</button>
-        <button className={sport==="football" ? "active" : ""}onClick={()=>setSport("football")}
-          >Football</button>
-      </div>
-
-      <div className="tabs">
-        <button className={gender==="men"?"active":""}
-          onClick={()=>setGender("men")}>Men</button>
-        <button className={gender==="women"?"active":""}
-          onClick={()=>setGender("women")}>Women</button>
-      </div>
-
-      {Object.entries(pools).map(([pool, rows])=>(
-        <div key={pool}>
-          <h2>Pool {pool}</h2>
-          <table className="leaderboard">
-            <thead>
-              <tr>
-                {columns.map(c=><th key={c.key}>{c.label}</th>)}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r,i)=>(
-                <tr key={i}>
-                  {columns.map(c=><td key={c.key}>{r[c.key]}</td>)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <>
+      <Sidebar selectedSport={sport} onSelect={setSport} />
+      <div className="page">
+        <h1>OVERALL LEADERBOARD</h1>
+        <div className="tabs">
+          <button className={gender === "men" ? "active" : ""} onClick={() => setGender("men")}>Men</button>
+          <button className={gender === "women" ? "active" : ""} onClick={() => setGender("women")}>Women</button>
         </div>
-      ))}
-    </div>
+        <div className="leaderboard-section">
+          {Object.entries(pools).map(([pool, rows]) => (
+            <div key={pool}>
+              <h2 style={{margin: "18px 0 8px 0", color: "#f74b2b", fontWeight: 700}}>Pool {pool}</h2>
+              <table className="leaderboard">
+                <thead>
+                  <tr>
+                    <th>RANK</th>
+                    {columns.map(c => <th key={c.key}>{c.label}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r, i) => (
+                    <tr key={i}>
+                      <td>
+                        <Medal rank={i + 1} />
+                      </td>
+                      {columns.map(c => <td key={c.key}>{r[c.key]}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }

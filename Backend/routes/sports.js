@@ -113,38 +113,46 @@ router.get("/:sport/schedule/:gender", (req, res) => {
           Score: r["__EMPTY_7"] || ""
         }));
     }
-    /* ---------- CHESS ---------- */
-    if (sport === "chess") {
-      let currentRound = "";
-      let currentDate = "";
-      let currentTime = "";
-      let currentVenue = "";
+    /* ---------- CHESS (ROBUST, NO MERGES) ---------- */
+if (sport === "chess") {
+  const data = raw
+    .filter(r => {
+      const values = Object.values(r).map(v =>
+        typeof v === "string" ? v.trim() : v
+      );
 
-      const data = raw
-        .filter(r => r["__EMPTY_1"] || r["__EMPTY_2"]) // TEAM I / TEAM II
-        .map(r => {
-          // ROUND NO is in first column when present
-          if (r["__EMPTY"]) currentRound = r["__EMPTY"];
+      // skip header row
+      return (
+        values.includes("TEAM I") === false &&
+        values.includes("TEAM II") === false &&
+        values.length >= 5
+      );
+    })
+    .map(r => {
+      const keys = Object.keys(r);
 
-          // Date / Time / Venue are repeated via merged cells
-          if (r["__EMPTY_3"]) currentDate = r["__EMPTY_3"];
-          if (r["__EMPTY_4"]) currentTime = r["__EMPTY_4"];
-          if (r["__EMPTY_5"]) currentVenue = r["__EMPTY_5"];
+      // Dynamically map columns (safe)
+      const round = r[keys[0]];
+      const teamA = r[keys[1]];
+      const teamB = r[keys[2]];
+      const date = r[keys[3]];
+      const time = r[keys[4]];
+      const venue = r[keys[5]];
+      const score = r[keys[6]] || "";
 
-          return {
-            Round: currentRound,
-            TeamA: r["__EMPTY_1"] || "",
-            TeamB: r["__EMPTY_2"] || "",
-            Date: currentDate,
-            Time: currentTime,
-            Venue: currentVenue,
-            Score: r["__EMPTY_6"] || ""
-          };
-        });
+      return {
+        Round: round,
+        TeamA: teamA,
+        TeamB: teamB,
+        Date: typeof date === "number" ? excelDateToString(date) : date,
+        Time: time,
+        Venue: venue,
+        Score: score
+      };
+    });
 
-      return res.json(data);
-    }
-
+  return res.json(data);
+}
 
     res.json(data);
   } catch (err) {
