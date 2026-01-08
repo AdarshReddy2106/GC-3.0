@@ -5,12 +5,18 @@ import athleticsRoutes from "./routes/athletics.js";
 
 const app = express();
 
-// CORS configuration
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://gc-3-0.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: false
-}));
+// Completely permissive CORS - allow all origins
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Max-Age', '86400');
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
 
 app.use(express.json());
 
