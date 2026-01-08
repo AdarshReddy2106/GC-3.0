@@ -158,9 +158,15 @@ body {
   flex-shrink: 0;
 }
 
-.logo-icon {
-  font-size: 2rem;
-  color: #00ff87;
+.nav-logo .logo-image {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo .logo-image:hover {
+  transform: scale(1.05);
 }
 
 .nav-logo span {
@@ -180,7 +186,7 @@ body {
 
 .nav-link {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.95rem;
+  font-size:1.5rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   color: #1a1a1a;

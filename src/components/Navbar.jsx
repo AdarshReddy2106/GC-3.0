@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        <FaTrophy className="logo-icon" />
+        <img src="/logo.png" alt="GC 2026 Logo" className="logo-image" />
         <span>GC 2026</span>
       </div>
       

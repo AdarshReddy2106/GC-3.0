@@ -1,189 +1,245 @@
+/* Schedule.css */
+
+/* Reuse basic layout from Leaderboard for consistency */
 .page {
-  margin-left: 200px;
-  max-width: 1100px;
-  padding: 100px 24px 40px 24px;
+  margin-left: 280px;
+  padding: 100px 60px 60px 60px;
   min-height: 100vh;
-  background: #f5f5f5;
+  max-width: 100%;
+  background: #f1f5f9;
   font-family: "Inter", sans-serif;
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
-  letter-spacing: 2px;
-  color: #1a1a1a;
-  margin-bottom: 18px;
-  text-align: left;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: #0f172a;
+  margin-bottom: 40px;
+  text-transform: uppercase;
 }
 
+/* Tabs (Identical to Leaderboard for consistency) */
 .tabs {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 12px;
+  width: fit-content;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .tabs button {
-  padding: 10px 28px;
-  border-radius: 30px;
-  border: 1.5px solid #00ff87;
-  background: #fff;
-  color: #1a1a1a;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s;
-  outline: none;
+  transition: all 0.2s;
 }
 
 .tabs button:hover {
-  background: rgba(0, 255, 135, 0.1);
-  border-color: #00ff87;
+  color: #0f172a;
+  background: #f1f5f9;
 }
 
-.tabs .active {
-  background: #00ff87;
-  color: #1a1a1a;
-  border-color: #00ff87;
-  box-shadow: 0 4px 12px rgba(0, 255, 135, 0.3);
+.tabs button.active {
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 }
 
-/* ---------- Schedule ---------- */
+/* ---------- Schedule Specifics ---------- */
 .schedule {
-  display: grid;
-  gap: 18px;
-}
-
-.match-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 18px 24px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  border-left: 6px solid #00ff87;
-  transition: all 0.3s;
-}
-
-.match-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
-}
-
-.teams {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #1a1a1a;
-}
-
-.meta {
-  text-align: right;
-  font-size: 1rem;
-  color: #666;
-}
-
-.round {
-  display: block;
-  font-weight: 600;
-  color: #00ff87;
-  margin-bottom: 4px;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 100%;
+  width: 100%;
 }
 
 .schedule-date-group {
-  margin-bottom: 36px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  padding: 0 0 18px 0;
-  border-left: 6px solid #00ff87;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .schedule-date-header {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  color: #00ff87;
-  background: #f5f5f5;
-  padding: 18px 24px 8px 24px;
-  border-radius: 14px 14px 0 0;
-  border-bottom: 1.5px solid rgba(0, 255, 135, 0.2);
+  font-size: 1.5rem;
+  color: #e11d48; /* Red Date Header */
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.schedule-date {
-  color: #1a1a1a;
-  font-weight: 700;
-  font-size: 1.1rem;
+.schedule-date-header::after {
+  content: '';
+  height: 1px;
+  flex-grow: 1;
+  background: #cbd5e1;
+  opacity: 0.5;
 }
 
+/* Match Card / Table */
 .schedule-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 0;
+  border-collapse: separate;
+  border-spacing: 0 12px; /* Adds space between rows */
+}
+
+.schedule-table thead {
+  display: none; /* Hide headers for a cleaner "Card" look in the list */
+}
+
+.schedule-table tr {
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.schedule-table tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-table td {
+  padding: 20px 24px;
+  vertical-align: middle;
+  border: none;
+}
+
+/* First cell rounded corners */
+.schedule-table td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.9rem;
+  width: 60px;
+}
+
+/* Last cell rounded corners */
+.schedule-table td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  text-align: right;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Match Columns */
+.match-teams {
+  font-size: 1.1rem;
+  color: #0f172a;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.vs-badge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin: 0 12px;
+  vertical-align: middle;
+}
+
+.match-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 6px 16px;
+  border-radius: 6px;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Full Schedule Cards */
+.match-card {
   background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  border-left: 4px solid #e11d48; /* Red accent border */
+  transition: all 0.2s;
+  margin-bottom: 12px;
 }
 
-.schedule-table th,
-.schedule-table td {
-  padding: 12px 10px;
-  text-align: center;
-  font-size: 1.05rem;
+.match-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.schedule-table th {
-  background: #00ff87;
-  color: #1a1a1a;
+.match-card-sport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.match-card-sport img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+}
+
+.match-card-sport span {
   font-weight: 700;
+  font-size: 0.9rem;
+  color: #64748b;
+  text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 2px solid #00d96e;
 }
 
-.schedule-table td {
-  border-bottom: 1px solid #f2f2f2;
-  color: #1a1a1a;
-}
-
-.schedule-table tbody tr:hover {
-  background: rgba(0, 255, 135, 0.05);
-}
-
-.schedule-table tr:last-child td {
-  border-bottom: none;
-}
-
-/* ---------- Leaderboard ---------- */
-.leaderboard {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.leaderboard th {
-  background: #00ff87;
-  color: #1a1a1a;
-  padding: 12px;
+.match-card-teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 1.1rem;
   font-weight: 700;
+  color: #0f172a;
 }
 
-.leaderboard td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-
-.leaderboard tr:hover {
-  background: #f1f5ff;
-}
-
-.points {
-  font-weight: 700;
+.match-card-meta {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #64748b;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
-  .page { margin-left: 70px; }
+  .page { margin-left: 80px; }
+  .match-card { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+  .match-card-teams { justify-content: center; }
+  .match-card-meta { text-align: center; }
+  .schedule-table td { display: block; text-align: center; padding: 10px; }
+  .schedule-table td:first-child { border-radius: 12px 12px 0 0; background: #f8fafc; }
+  .schedule-table td:last-child { border-radius: 0 0 12px 12px; }
 }
 
 @media (max-width: 600px) {
-  .page { padding: 16px 2vw 2vw 2vw; }
-  .match-card { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .meta { text-align: left; }
+  .page { margin-left: 0; padding: 80px 16px; }
+  .match-teams { display: flex; flex-direction: column; gap: 4px; }
+  .vs-badge { margin: 4px 0; align-self: center; }
 }

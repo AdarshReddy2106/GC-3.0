@@ -1,392 +1,343 @@
-/* Leaderboard Page Styles */
+/* Leaderboard.css */
+
+/* ---------- Layout & Global ---------- */
 .leaderboard-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0e13 0%, #1a1e23 100%);
-  padding: 120px 20px 60px;
+  background: #f8fafc; /* Very light slate background */
 }
 
-.leaderboard-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 4rem;
-  text-align: center;
-  margin-bottom: 50px;
-  color: white;
-  letter-spacing: 8px;
-  text-shadow: 0 0 30px rgba(180, 40, 60, 0.6);
-}
-
-/* Sport Selector */
-.sport-selector {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 60px;
-  flex-wrap: wrap;
-}
-
-.sport-btn {
-  padding: 12px 28px;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.sport-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.sport-btn.active {
-  background: linear-gradient(135deg, rgba(180, 40, 60, 0.6), rgba(200, 60, 80, 0.4));
-  color: white;
-  border: 1px solid rgba(200, 60, 80, 0.5);
-  box-shadow: 0 4px 20px rgba(180, 40, 60, 0.4);
-  transform: scale(1.05);
-}
-
-/* Tables Container */
-.tables-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 40px;
-}
-
-/* Pool Table Card */
-.pool-table {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.pool-table:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-  border-color: rgba(180, 40, 60, 0.3);
-}
-
-/* Pool Header */
-.pool-header {
-  background: linear-gradient(135deg, rgba(180, 40, 60, 0.6), rgba(200, 60, 80, 0.4));
-  padding: 16px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.pool-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 4px;
-  color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Table */
-.standings-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.standings-table thead {
-  background: rgba(0, 0, 0, 0.3);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.standings-table th {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 14px 8px;
-  color: rgba(255, 255, 255, 0.7);
-  text-align: center;
-}
-
-.standings-table th:first-child {
-  text-align: left;
-  padding-left: 20px;
-}
-
-.standings-table tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.2s ease;
-}
-
-.standings-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.standings-table td {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.95rem;
-  padding: 16px 8px;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-}
-
-/* Team Cell */
-.team-cell {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  text-align: left;
-}
-
-.team-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.team-name-cell {
-  font-weight: 700;
-  font-size: 1rem;
-  color: white;
-  letter-spacing: 1px;
-}
-
-/* Points Cell */
-.points-cell {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: rgba(200, 60, 80, 0.9);
-  text-shadow: 0 0 10px rgba(200, 60, 80, 0.3);
-}
-
-/* Sidebar */
+/* ---------- Sidebar ---------- */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 180px;
+  width: 280px;
   height: 100vh;
-  background: #ffffff;
+  background: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-  z-index: 10;
-  border-right: 4px solid #00ff87;
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  padding: 100px 0 40px 0;
+  z-index: 50;
+  box-shadow: 8px 0 40px rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(225, 29, 72, 0.2);
+  overflow-y: auto;
 }
 
-.sidebar .sidebar-title {
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(225, 29, 72, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.sidebar-title {
   color: #fff;
-  font-size: 1.3rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 4px;
+  padding: 0 28px;
+  margin-bottom: 8px;
   font-weight: 700;
-  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+  background: linear-gradient(135deg, #fff 0%, #e11d48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-subtitle {
+  color: #94a3b8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
   letter-spacing: 2px;
-  background: #00ff87;
-  padding: 10px 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 255, 135, 0.3);
+  padding: 0 28px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
 }
 
-.sidebar .sidebar-desc {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 30px;
-  text-align: center;
-  padding: 0 10px;
+.sidebar-desc {
+  display: none;
 }
 
-.sidebar .sidebar-sports {
+.sidebar-sports {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  width: 100%;
+  gap: 4px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-sport {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  color: #cbd5e1;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+  background: transparent;
+}
+
+.sidebar-sport::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(225, 29, 72, 0.15) 100%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-sport:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-left-color: #e11d48;
+  padding-left: 28px;
+}
+
+.sidebar-sport:hover::after {
   width: 100%;
 }
 
-.sidebar .sidebar-sport {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #f5f5f5;
-  color: #1a1a1a;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 10px 18px;
-  border-radius: 8px 0 0 8px;
-  cursor: pointer;
-  border-left: 6px solid transparent;
-  transition: all 0.3s;
+.sidebar-sport.selected {
+  background: rgba(225, 29, 72, 0.12);
+  color: #fff;
+  border-left-color: #e11d48;
+  padding-left: 28px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.2);
 }
 
-.sidebar .sidebar-sport.selected,
-.sidebar .sidebar-sport:hover {
-  background: #00ff87;
-  color: #1a1a1a;
-  border-left: 6px solid #00d96e;
-  box-shadow: 0 4px 12px rgba(0, 255, 135, 0.2);
+.sidebar-sport.selected::after {
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(225, 29, 72, 0.2) 100%);
 }
 
-.sidebar .sidebar-sport img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+.sport-label {
+  flex: 1;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Main Page Layout */
+/* ---------- Main Page Area ---------- */
 .page {
-  margin-left: 200px;
-  padding: 100px 24px 40px 24px;
+  margin-left: 280px;
+  padding: 100px 60px 60px 60px;
   min-height: 100vh;
-  background: #f5f5f5;
-  font-family: 'Inter', sans-serif;
+  max-width: 100%;
+  background: #f1f5f9;
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
-  letter-spacing: 2px;
-  color: #1a1a1a;
-  margin-bottom: 18px;
-  text-align: left;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: #0f172a;
+  margin-bottom: 40px;
+  text-transform: uppercase;
 }
 
+/* ---------- Tabs ---------- */
 .tabs {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 40px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 12px;
+  width: fit-content;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .tabs button {
-  padding: 10px 28px;
-  border-radius: 30px;
-  border: 1.5px solid #00ff87;
-  background: #fff;
-  color: #1a1a1a;
+  padding: 10px 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s;
-  outline: none;
+  transition: all 0.2s;
 }
 
 .tabs button:hover {
-  background: rgba(0, 255, 135, 0.1);
-  border-color: #00ff87;
+  color: #0f172a;
+  background: #f1f5f9;
 }
 
-.tabs .active {
-  background: #00ff87;
-  color: #1a1a1a;
-  border-color: #00ff87;
-  box-shadow: 0 4px 12px rgba(0, 255, 135, 0.3);
+.tabs button.active {
+  background: #0f172a; /* Black active tab */
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 }
 
-/* Leaderboard Table */
+/* ---------- Leaderboard Tables ---------- */
 .leaderboard-section {
-  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Pool Title */
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: #e11d48; /* Red Accent for headers */
+  margin: 0 0 16px 4px !important;
+  letter-spacing: 1px;
 }
 
 .leaderboard {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: #fff;
+  max-width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 32px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.leaderboard thead {
+  background: #1e293b; /* Dark Header */
 }
 
 .leaderboard th {
-  background: #00ff87;
-  color: #1a1a1a;
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: 14px 0;
-  border-bottom: 2px solid #00d96e;
-}
-
-.leaderboard td {
-  padding: 14px 0;
+  padding: 20px;
   text-align: center;
-  font-size: 1.05rem;
-  border-bottom: 1px solid #f2f2f2;
-  color: #1a1a1a;
-}
-
-.leaderboard tbody tr:hover {
-  background: rgba(0, 255, 135, 0.05);
-}
-
-.leaderboard tr:last-child td {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #f8fafc;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   border-bottom: none;
 }
 
-.leaderboard .medal {
-  font-size: 1.3rem;
-  vertical-align: middle;
+.leaderboard tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s;
 }
 
-.leaderboard .medal.gold { color: #ffd700; }
-.leaderboard .medal.silver { color: #c0c0c0; }
-.leaderboard .medal.bronze { color: #cd7f32; }
+.leaderboard tbody tr:last-child {
+  border-bottom: none;
+}
+
+.leaderboard tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Highlight top 2 positions for semi-finalists */
+.leaderboard tbody tr:nth-child(1) {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 255, 255, 1) 100%);
+  border-left: 4px solid #fbbf24;
+}
+
+.leaderboard tbody tr:nth-child(2) {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.12) 0%, rgba(255, 255, 255, 1) 100%);
+  border-left: 4px solid #94a3b8;
+}
+
+.leaderboard tbody tr:nth-child(1):hover,
+.leaderboard tbody tr:nth-child(2):hover {
+  background: #fef3c7;
+}
+
+.leaderboard td {
+  padding: 20px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #334155;
+  font-size: 1rem;
+}
+
+/* Rank Column */
+.leaderboard td:first-child {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.leaderboard tbody tr:nth-child(1) td:first-child {
+  color: #fbbf24;
+  font-size: 1.3rem;
+}
+
+.leaderboard tbody tr:nth-child(2) td:first-child {
+  color: #94a3b8;
+  font-size: 1.3rem;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .tables-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .page {
+    margin-left: 80px; /* Shrink for tablet */
+    padding: 100px 32px 40px;
+  }
+  
+  .sidebar {
+    width: 80px;
+  }
+  
+  .sidebar-title, .sidebar-sport span {
+    display: none;
+  }
+  
+  .sidebar-sport {
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .sidebar-sport img {
+    width: 28px;
+    height: 28px;
   }
 }
 
-@media (max-width: 768px) {
-  .leaderboard-title {
+@media (max-width: 640px) {
+  .page {
+    margin-left: 0;
+    padding: 90px 20px 40px;
+  }
+  
+  .sidebar {
+    display: none; /* Consider a bottom nav or hamburger for mobile, or keep it simple */
+  }
+
+  h1 {
     font-size: 2.5rem;
-    letter-spacing: 4px;
   }
-
-  .tables-container {
-    grid-template-columns: 1fr;
-    min-width: auto;
-  }
-
-  .pool-table {
+  
+  .leaderboard {
+    display: block;
     overflow-x: auto;
   }
-
-  .standings-table {
-    min-width: 500px;
+  
+  .leaderboard th, .leaderboard td {
+    padding: 16px 12px;
+    font-size: 0.9rem;
   }
-
-  .sport-btn {
-    padding: 10px 20px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .sidebar { width: 60px; }
-  .sidebar .sidebar-title,
-  .sidebar .sidebar-desc,
-  .sidebar .sidebar-sport span { display: none; }
-  .sidebar .sidebar-sport { justify-content: center; padding: 10px 0; }
-  .page { margin-left: 70px; }
-}
-
-@media (max-width: 600px) {
-  .page { padding: 16px 2vw 2vw 2vw; }
-  .leaderboard th, .leaderboard td { font-size: 0.95rem; padding: 10px 0; }
 }

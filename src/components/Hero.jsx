@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "../components/Button";
-import { Play, Calendar, Clock, MapPin, Facebook, Instagram, Twitter } from "lucide-react";
+import { Play, Calendar, Clock, MapPin, Facebook, Instagram, Twitter, Youtube, Download } from "lucide-react";
 import heroRunner from "../assets/hero-runner.jpg";
 import raceGroup from "../assets/race-group.jpg";
 
@@ -35,8 +35,8 @@ const Hero = () => {
                 <div className="w-10 h-10 rounded-full bg-primary/60 border-2 border-secondary" />
               </div>
               <div>
-                <span className="text-primary font-bold text-lg">1,200+</span>
-                <p className="text-sm opacity-80">Active Members</p>
+                <span className="text-primary font-bold text-lg">3rd</span>
+                <p className="text-sm opacity-80">edition</p>
               </div>
             </motion.div>
 
@@ -47,9 +47,9 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-none mb-6"
             >
-              RUN TOGETHER,
+              GENERAL
               <br />
-              ACHIEVE MORE
+              CHAMPIONSHIP 2026
             </motion.h1>
 
             <motion.p 
@@ -57,8 +57,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-lg opacity-90 mb-8 max-w-md"
-            >
-              Join our vibrant running club and conquer every mile – from weekend jogs to marathon triumphs.
+            >The ultimate sporting battleground of IIT Palakkad — where grit, glory, and house pride collide under one banner.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -68,12 +67,49 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="flex items-center gap-4"
             >
-              <Button variant="hero" size="lg">
-                JOIN THE CLUB
-              </Button>
-              <button className="w-12 h-12 rounded-full bg-secondary-foreground/20 backdrop-blur flex items-center justify-center hover:bg-secondary-foreground/30 transition-colors">
-                <Play className="w-5 h-5 text-secondary-foreground fill-current" />
-              </button>
+              <a 
+                href="https://www.youtube.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-xl"
+              >
+                <Youtube className="w-5 h-5" />
+                <span>WATCH ON YOUTUBE</span>
+              </a>
+            </motion.div>
+
+            {/* Event Info Cards */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex flex-wrap gap-4 mt-8"
+            >
+              {/* Time Period Card */}
+              <div className="bg-secondary-foreground/10 backdrop-blur-sm border border-secondary-foreground/20 rounded-xl p-4 flex items-center gap-3 min-w-[200px]">
+                <div className="bg-primary/20 p-2 rounded-lg">
+                  <Calendar className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-secondary-foreground/60 uppercase tracking-wide">Event Period</p>
+                  <p className="text-sm font-bold text-secondary-foreground">14 - 21 Dec 2025</p>
+                </div>
+              </div>
+
+              {/* Download Rulebook Card */}
+              <a 
+                href="/rulebook.pdf" 
+                download
+                className="bg-secondary-foreground/10 backdrop-blur-sm border border-secondary-foreground/20 rounded-xl p-4 flex items-center gap-3 min-w-[200px] hover:bg-secondary-foreground/20 transition-all cursor-pointer group"
+              >
+                <div className="bg-primary/20 p-2 rounded-lg group-hover:bg-primary/30 transition-colors">
+                  <Download className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-secondary-foreground/60 uppercase tracking-wide">Download</p>
+                  <p className="text-sm font-bold text-secondary-foreground">Rulebook PDF</p>
+                </div>
+              </a>
             </motion.div>
           </div>
 
