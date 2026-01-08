@@ -127,7 +127,7 @@ const Hero = () => {
         {[Facebook, Instagram, Twitter].map((Icon, i) => (
           <a
             key={i}
-            href="#"
+            href="https://www.instagram.com/"
             className="w-10 h-10 rounded-full bg-secondary/80 backdrop-blur flex items-center justify-center hover:bg-primary transition-colors group"
           >
             <Icon className="w-4 h-4 text-secondary-foreground group-hover:text-primary-foreground" />

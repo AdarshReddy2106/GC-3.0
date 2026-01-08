@@ -49,7 +49,7 @@ export default function Leaderboard() {
   const [pools, setPools] = useState({});
 
   useEffect(() => {
-    fetch(`https://gcbackend.vercel.app/api/${sport}/leaderboard/${gender}`)
+    fetch(`https://gcbackend-adarshs-projects-3bb4a1c6.vercel.app/${sport}/leaderboard/${gender}`)
       .then(res => res.json())
       .then(data => {
         setColumns(data.columns || []);

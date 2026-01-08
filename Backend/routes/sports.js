@@ -8,6 +8,11 @@ router.get("/:sport/schedule/:gender", (req, res) => {
   try {
     const { sport, gender } = req.params;
     const prefix = getSportPrefix(sport);
+    
+    if (!prefix) {
+      return res.status(400).json({ error: `Invalid sport: ${sport}` });
+    }
+    
     const sheet = `${prefix}_${gender.toUpperCase()}_SCHEDULE`;
 
     const raw = readExcelSheet(sheet);

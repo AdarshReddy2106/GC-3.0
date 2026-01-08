@@ -8,13 +8,15 @@ export function excelDateToString(serial) {
 
 /* Map sport to Excel sheet prefix */
 export function getSportPrefix(sport) {
-  if (sport === "volleyball") return "VB";
-  if (sport === "badminton") return "BT";
-  if (sport === "tabletennis") return "TT";
-  if (sport === "cricket") return "CR";     
-  if (sport === "football") return "FB"; 
-  if (sport === "chess") return "CH";
-  if (sport === "basketball") return "BB"; 
-  if (sport === "athletics") return "AT";
-  throw new Error("Invalid sport");
+  const sportMap = {
+    'volleyball': 'VB',
+    'badminton': 'BT',
+    'tabletennis': 'TT',
+    'cricket': 'CR',
+    'football': 'FB',
+    'chess': 'CH',
+    'basketball': 'BB',
+    'athletics': 'AT'
+  };
+  return sportMap[sport] || null;
 }
