@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../styles/home.css';
 import TeamsScroll from '../components/TeamsScroll';
+import ScrollReveal from '../components/ScrollReveal';
+import SplitText from '../components/splittext';
+
 // Hero Section Component
 const HeroSection = () => {
   return (
@@ -31,15 +34,59 @@ const HeroSection = () => {
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 4l10 16h4L6 4H2zm10 0l10 16h-4L8 4h4z" fill="white"/>
           </svg>
-          <span className="valorant-text">GET READY FOR</span>
+          <SplitText
+            text="GET READY FOR"
+            className="valorant-text"
+            delay={50}
+            duration={0.5}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.3}
+            rootMargin="-50px"
+          />
         </div>
-        <div className="first-strike">GC SEASON 3</div>
+        <SplitText
+          text="GC SEASON 3"
+          className="first-strike"
+          delay={80}
+          duration={0.6}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 30 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.3}
+          rootMargin="-50px"
+        />
       </div>
 
       {/* Right info */}
       <div className="right-info">
-        <div className="begins-text">COMING IN</div>
-        <div className="tomorrow-text">JANUARY</div>
+        <SplitText
+          text="COMING IN"
+          className="begins-text"
+          delay={50}
+          duration={0.5}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 20 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.3}
+          rootMargin="-50px"
+        />
+        <SplitText
+          text="JANUARY"
+          className="tomorrow-text"
+          delay={80}
+          duration={0.6}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 30 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.3}
+          rootMargin="-50px"
+        />
       </div>
 
       {/* Character */}
@@ -80,10 +127,32 @@ const AboutSection = () => {
         <div className="about-hero-bg"></div>
         <div className="about-hero-overlay"></div>
         <div className="about-hero-content">
-          <div className="about-tag">THE LEGACY</div>
-          <h2 className="about-main-title">
-            ABOUT THE <span>GENERAL CHAMPIONSHIP 2026</span>
-          </h2>
+          <SplitText
+            text="THE LEGACY"
+            className="about-tag"
+            delay={50}
+            duration={0.4}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+            rootMargin="-100px"
+            textAlign="center"
+          />
+          <SplitText
+            text="ABOUT THE GENERAL CHAMPIONSHIP 2026"
+            className="about-main-title"
+            delay={80}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+            rootMargin="-100px"
+            textAlign="center"
+          />
         </div>
       </div>
 
@@ -91,12 +160,29 @@ const AboutSection = () => {
       <div className="about-content-area">
         <div className="about-grid">
           <div className="about-text-side">
-            <p className="about-description">
-              The General Championship, first held in 2024, is one of the newest and most exciting traditions in our institution. It fosters resilience, leadership, discipline, and camaraderie among students across all departments. Over the years, the spirit of the championship has endured, representing youthful energy, excellence, and the shared vision of building a stronger community.
-            </p>
-            <p className="about-description">
-              The General Championship is an eagerly anticipated annual sports tournament. Typically organized in the academic year, it brings together athletes from different backgrounds, making it a highlight on the academic calendar. The championship celebrates not just athletic prowess, but the values of teamwork, sportsmanship, and the relentless pursuit of greatness.
-            </p>
+            <ScrollReveal
+              delay={0.2}
+              duration={0.8}
+              from={{ opacity: 0, y: 50 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.3}
+            >
+              <p className="about-description">
+                The General Championship, first held in 2024, is one of the newest and most exciting traditions in our institution. It fosters resilience, leadership, discipline, and camaraderie among students across all departments. Over the years, the spirit of the championship has endured, representing youthful energy, excellence, and the shared vision of building a stronger community.
+              </p>
+            </ScrollReveal>
+            
+            <ScrollReveal
+              delay={0.4}
+              duration={0.8}
+              from={{ opacity: 0, y: 50 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.3}
+            >
+              <p className="about-description">
+                The General Championship is an eagerly anticipated annual sports tournament. Typically organized in the academic year, it brings together athletes from different backgrounds, making it a highlight on the academic calendar. The championship celebrates not just athletic prowess, but the values of teamwork, sportsmanship, and the relentless pursuit of greatness.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </div>
@@ -158,13 +244,43 @@ const FeaturedSportsSection = () => {
     <section className="featured-sports-section" id="sports">
       <div className="featured-sports-container">
         <div className="featured-sports-header">
-          <div className="featured-sports-tag">COMPETITION</div>
-          <h2 className="featured-sports-title">
-            FEATURED <span>SPORTS</span>
-          </h2>
-          <p className="featured-sports-description">
-            Elite participants from across all departments competing in multiple headline events for the championship trophy.
-          </p>
+          <SplitText
+            text="COMPETITION"
+            className="featured-sports-tag"
+            delay={50}
+            duration={0.4}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+            rootMargin="-100px"
+            textAlign="center"
+          />
+          <SplitText
+            text="FEATURED SPORTS"
+            className="featured-sports-title"
+            delay={80}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+            rootMargin="-100px"
+            textAlign="center"
+          />
+          <ScrollReveal
+            delay={0.3}
+            duration={0.8}
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+          >
+            <p className="featured-sports-description">
+              Elite participants from across all departments competing in multiple headline events for the championship trophy.
+            </p>
+          </ScrollReveal>
         </div>
 
         <div className="featured-sports-grid">
@@ -210,10 +326,32 @@ const PreviousWinnersSection = () => {
     <section className="previous-winners-section" id="winners">
       <div className="winners-container">
         <div className="winners-header">
-          <div className="winners-tag">HALL OF FAME</div>
-          <h2 className="winners-title">
-            PREVIOUS <span>CHAMPIONS</span>
-          </h2>
+          <SplitText
+            text="HALL OF FAME"
+            className="winners-tag"
+            delay={50}
+            duration={0.4}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+            rootMargin="-100px"
+            textAlign="center"
+          />
+          <SplitText
+            text="PREVIOUS CHAMPIONS"
+            className="winners-title"
+            delay={80}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.2}
+            rootMargin="-100px"
+            textAlign="center"
+          />
         </div>
 
         <div className="year-filter">
