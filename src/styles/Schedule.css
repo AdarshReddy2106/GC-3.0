@@ -1,62 +1,66 @@
 /* Schedule.css */
 
 /* Import shared navbar styles */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
 
-/* Reuse basic layout from Leaderboard for consistency */
+/* Dark Sports Theme Layout */
 .page {
-  margin-left: 280px;
-  padding: 100px 60px 60px 60px;
+  margin-left: 0;
+  padding: 120px 60px 60px 60px;
   min-height: 100vh;
   max-width: 100%;
-  background: #f1f5f9;
-  font-family: "Inter", sans-serif;
+  background: #050505;
+  font-family: 'Rajdhani', sans-serif;
+  color: white;
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
+  font-size: 5rem;
   line-height: 1;
-  color: #0f172a;
+  color: white;
   margin-bottom: 40px;
   text-transform: uppercase;
+  letter-spacing: 8px;
 }
 
-/* Tabs (Identical to Leaderboard for consistency) */
+h1 span {
+  color: #e11d48;
+}
+
+/* Tabs - Dark Sports Theme */
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 40px;
-  background: #fff;
-  padding: 6px;
-  border-radius: 12px;
   width: fit-content;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .tabs button {
-  padding: 10px 24px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: #64748b;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
+  padding: 15px 35px;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .tabs button:hover {
-  color: #0f172a;
-  background: #f1f5f9;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .tabs button.active {
-  background: #0f172a;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  color: white;
+  background: #e11d48;
+  border-color: #e11d48;
 }
 
 /* ---------- Schedule Specifics ---------- */
@@ -79,119 +83,154 @@ h1 {
 
 .schedule-date-header {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  color: #e11d48; /* Red Date Header */
-  margin-bottom: 16px;
+  font-size: 2rem;
+  color: #e11d48;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
+  letter-spacing: 4px;
 }
 
 .schedule-date-header::after {
   content: '';
   height: 1px;
   flex-grow: 1;
-  background: #cbd5e1;
-  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Match Card / Table */
+/* Match Card / Table - Dark Theme */
 .schedule-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 12px; /* Adds space between rows */
+  border-spacing: 0 3px;
 }
 
 .schedule-table thead {
-  display: none; /* Hide headers for a cleaner "Card" look in the list */
+  display: none;
 }
 
 .schedule-table tr {
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: linear-gradient(90deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.schedule-table tr::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: #e11d48;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
 .schedule-table tr:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
+  transform: scale(1.01);
+}
+
+.schedule-table tr:hover::before {
+  transform: scaleY(1);
 }
 
 .schedule-table td {
-  padding: 20px 24px;
+  padding: 40px 50px;
   vertical-align: middle;
   border: none;
+  color: white;
 }
 
 /* First cell rounded corners */
 .schedule-table td:first-child {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  color: #94a3b8;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'Oswald', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
+  letter-spacing: 2px;
   width: 60px;
 }
 
 /* Last cell rounded corners */
 .schedule-table td:last-child {
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   text-align: right;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: 'Oswald', sans-serif;
   font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
 }
 
 /* Match Columns */
 .match-teams {
-  font-size: 1.1rem;
-  color: #0f172a;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-size: 1.5rem;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.schedule-table tr:hover .match-teams {
+  color: #e11d48;
 }
 
 .vs-badge {
   display: inline-block;
-  background: #f1f5f9;
-  color: #64748b;
+  background: rgba(225, 29, 72, 0.2);
+  color: #e11d48;
   font-size: 0.75rem;
+  font-family: 'Oswald', sans-serif;
   font-weight: 800;
-  padding: 4px 8px;
-  border-radius: 6px;
-  margin: 0 12px;
+  padding: 6px 12px;
+  border-radius: 0;
+  margin: 0 20px;
   vertical-align: middle;
+  letter-spacing: 2px;
 }
 
 .match-time {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.25rem;
-  color: #0f172a;
-  background: #f1f5f9;
+  font-size: 2rem;
+  color: white;
+  background: transparent;
   padding: 6px 16px;
-  border-radius: 6px;
+  border-radius: 0;
   display: inline-block;
-  min-width: 80px;
+  min-width: 120px;
   text-align: center;
+  letter-spacing: 3px;
 }
 
-/* Full Schedule Cards */
+/* Full Schedule Cards - Dark Theme */
 .match-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
+  background: linear-gradient(90deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+  border-radius: 0;
+  padding: 30px 40px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 24px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-  border-left: 4px solid #e11d48; /* Red accent border */
-  transition: all 0.2s;
-  margin-bottom: 12px;
+  gap: 30px;
+  border-left: 5px solid #e11d48;
+  transition: all 0.4s ease;
+  margin-bottom: 3px;
+  position: relative;
+  overflow: hidden;
 }
 
 .match-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
+  transform: scale(1.01);
+  box-shadow: 0 0 40px rgba(225, 29, 72, 0.2);
 }
 
 .match-card-sport {
@@ -207,53 +246,71 @@ h1 {
 }
 
 .match-card-sport span {
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
-  font-size: 0.9rem;
-  color: #64748b;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
 }
 
 .match-card-teams {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #0f172a;
+  gap: 20px;
+  font-size: 1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  color: white;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.match-card:hover .match-card-teams {
+  color: #e11d48;
 }
 
 .match-card-meta {
   text-align: right;
-  font-size: 0.9rem;
-  color: #64748b;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 1px;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .page { 
-    margin-left: 80px;
-    padding: 100px 40px 60px;
+    margin-left: 0;
+    padding: 120px 40px 60px;
   }
   
   h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
   
   .schedule-table td {
-    padding: 16px 20px;
+    padding: 30px 40px;
   }
   
   .match-teams {
-    font-size: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  .match-time {
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 900px) {
   .page { 
     margin-left: 0;
-    padding: 100px 30px 60px;
+    padding: 110px 20px 60px;
+  }
+  
+  h1 {
+    font-size: 3rem;
   }
   
   .schedule-table {
@@ -263,100 +320,179 @@ h1 {
   .schedule-table tr {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
-    padding: 16px;
+    margin-bottom: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    gap: 4px;
   }
   
   .schedule-table td {
     display: block;
-    text-align: left;
+    text-align: center;
     padding: 8px 0;
     border-radius: 0 !important;
+    width: 100% !important;
   }
   
   .schedule-table td:first-child {
-    font-size: 0.85rem;
-    width: 100%;
-    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .schedule-table td:last-child {
+    text-align: center;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
   }
   
   .match-teams {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.4rem;
+    padding: 8px 0;
   }
   
   .vs-badge {
     display: block;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 8px 20px;
+    font-size: 0.7rem;
+  }
+  
+  .match-time {
+    font-size: 2rem;
+    padding: 12px 24px;
+    background: rgba(225, 29, 72, 0.1);
     margin: 8px 0;
   }
   
-  .schedule-table td:last-child {
-    text-align: left;
-    margin-top: 8px;
+  .match-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 25px;
+  }
+  
+  .match-card-teams {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .match-card-meta {
+    text-align: center;
   }
 }
 
 @media (max-width: 600px) {
   .page { 
-    padding: 90px 20px 40px;
+    padding: 90px 16px 40px;
   }
   
   h1 {
     font-size: 2.5rem;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
+    letter-spacing: 3px;
   }
   
   .tabs {
-    padding: 4px;
+    padding: 0;
     gap: 6px;
+    width: 100%;
   }
   
   .tabs button {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+    padding: 10px 14px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    flex: 1;
+    min-width: 0;
   }
   
   .schedule-date-header {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
   }
   
   .match-teams {
-    font-size: 0.95rem;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
   }
   
   .match-time {
-    font-size: 1.1rem;
-    padding: 5px 14px;
+    font-size: 1.8rem;
+    padding: 10px 20px;
   }
   
   .schedule {
-    gap: 24px;
+    gap: 20px;
+  }
+  
+  .schedule-table tr {
+    padding: 20px 16px;
+    margin-bottom: 10px;
+  }
+  
+  .schedule-table td {
+    padding: 6px 0;
   }
 }
 
 @media (max-width: 480px) {
   .page {
-    padding: 80px 16px 40px;
+    padding: 80px 12px 40px;
   }
   
   h1 {
     font-size: 2rem;
+    letter-spacing: 2px;
   }
   
   .tabs {
     width: 100%;
+    gap: 4px;
   }
   
   .tabs button {
     flex: 1;
-    padding: 8px 12px;
-    font-size: 0.75rem;
+    padding: 9px 8px;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .schedule-date-header {
+    font-size: 1.1rem;
   }
   
   .schedule-table tr {
-    padding: 12px;
+    padding: 18px 14px;
   }
   
   .match-teams {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .match-time {
+    font-size: 1.6rem;
+    padding: 8px 16px;
+  }
+  
+  .vs-badge {
+    padding: 6px 14px;
+    margin: 0 auto;
+    font-size: 0.65rem;
+  }
+  
+  .match-card {
+    padding: 18px 14px;
   }
 }

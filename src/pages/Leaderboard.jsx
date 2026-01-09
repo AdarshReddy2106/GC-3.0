@@ -39,9 +39,11 @@ export default function Leaderboard() {
   const [gender, setGender] = useState("men");
   const [columns, setColumns] = useState([]);
   const [pools, setPools] = useState({});
-
+  const noGenderFilterSports = ["chess", "football", "cricket"];
+  const effectiveGender = noGenderFilterSports.includes(sport) ? "men" : gender;
+  
   useEffect(() => {
-    fetch(`https://gc-backend-9bj6.onrender.com/api/${sport}/leaderboard/${gender}`)
+    fetch(`https://gc-backend-9bj6.onrender.com/api/${sport}/leaderboard/${effectiveGender}`)
       .then(res => res.json())
       .then(data => {
         setColumns(data.columns || []);
@@ -49,7 +51,7 @@ export default function Leaderboard() {
       });
   }, [sport, gender]);
 
-  const noGenderFilterSports = ["chess", "football", "cricket"];
+
 
   return (
     <>

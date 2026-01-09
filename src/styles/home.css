@@ -561,6 +561,21 @@ main { display: block; }
   color: rgba(200, 60, 80, 1);
 }
 
+/* Shuffle Animation Styles */
+.contact-shuffle-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 3rem !important;
+  color: white;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  text-align: center;
+  line-height: 1.2 !important;
+}
+
+.shuffle-char {
+  display: inline-block;
+}
+
 .section-subtitle {
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;

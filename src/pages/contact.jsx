@@ -1,10 +1,27 @@
+import Shuffle from '../components/Shuffle';
+
 export default function Contact() {
   return (
     <div className="contact-page">
       <section className="contact-section">
         <div className="contact-container">
           <div className="section-header">
-            <h2>LET'S <span>CONNECT</span></h2>
+            <Shuffle 
+              text="LET'S CONNECT"
+              tag="h2"
+              className="contact-shuffle-title"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+              shuffleDirection="right"
+              duration={0.5}
+              shuffleTimes={3}
+              stagger={0.04}
+              scrambleCharset="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%"
+              colorFrom="#e11d48"
+              colorTo="#ffffff"
+              threshold={0.3}
+              triggerOnce={true}
+              triggerOnHover={false}
+            />
             <p className="section-subtitle">Reach out to us for any inquiries or collaboration</p>
           </div>
 

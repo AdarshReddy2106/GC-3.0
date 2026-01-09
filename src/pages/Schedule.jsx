@@ -15,26 +15,6 @@ const sports = [
 
 const menOnlySports = ["chess", "football", "cricket"];
 
-function Sidebar({ selectedSport, onSelect }) {
-  return (
-    <div className="sidebar">
-      <div className="sidebar-title">GC 2026 SCHEDULE</div>
-      <div className="sidebar-subtitle">Browse Events</div>
-      <div className="sidebar-sports">
-        {sports.map(s => (
-          <div
-            key={s.key}
-            className={`sidebar-sport${selectedSport === s.key ? " selected" : ""}`}
-            onClick={() => onSelect(s.key)}
-          >
-            <span className="sport-label">{s.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function formatDate(dateStr) {
   if (!dateStr || dateStr === "TBA") return "TBA";
   // Simple Date Formatting
@@ -61,10 +41,11 @@ function groupMatchesByDate(matches) {
 }
 
 export default function Schedule() {
-  const [sport, setSport] = useState("volleyball");
+  const [sport, setSport] = useState("full");
   const [gender, setGender] = useState("men");
   const [matches, setMatches] = useState([]);
   const [error, setError] = useState(null);
+  const noGenderFilterSports = ["chess", "football", "cricket"];
 
   // For full schedule
   const [fullSchedule, setFullSchedule] = useState({});
@@ -74,7 +55,9 @@ export default function Schedule() {
   useEffect(() => {
     if (sport === "full") return;
     setError(null);
-    fetch(`https://gc-backend-9bj6.onrender.com/api/${sport}/schedule/${gender}`)
+    // Force men gender for sports that don't have women's category
+    const effectiveGender = noGenderFilterSports.includes(sport) ? "men" : gender;
+    fetch(`https://gc-backend-9bj6.onrender.com/api/${sport}/schedule/${effectiveGender}`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch schedule");
         return res.json();
@@ -121,11 +104,24 @@ export default function Schedule() {
   // Full Schedule Render
   if (sport === "full") {
     return (
-      <>
-        <Sidebar selectedSport={sport} onSelect={setSport} />
-        <div className="page">
-          <h1>Full Schedule</h1>
-          <div className="tabs">
+      <div className="page">
+        <h1>Full Schedule</h1>
+        
+        {/* Sport Selection Tabs */}
+        <div className="tabs">
+          {sports.map(s => (
+            <button
+              key={s.key}
+              className={sport === s.key ? "active" : ""}
+              onClick={() => setSport(s.key)}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+        
+        {/* Date Filter Tabs */}
+        <div className="tabs" style={{ marginTop: '20px' }}>
             {fullDates.map(date => (
               <button
                 key={date}
@@ -176,8 +172,7 @@ export default function Schedule() {
                   ))
             )}
           </div>
-        </div>
-      </>
+      </div>
     );
   }
 
@@ -185,62 +180,62 @@ export default function Schedule() {
   const groupedMatches = groupMatchesByDate(matches);
   const allDates = Object.keys(groupedMatches).sort((a, b) => new Date(a) - new Date(b));
   let dayCounter = 0;
-  const noGenderFilterSports = ["chess", "football", "cricket"];
 
   return (
-    <>
-      <Sidebar selectedSport={sport} onSelect={setSport} />
-      <div className="page">
-        <div className="tabs">
-          {sports.filter(s => s.key !== "full").map(s => (
-            <button key={s.key} className={sport === s.key ? "active" : ""} onClick={() => setSport(s.key)}>
-              {s.label}
-            </button>
-          ))}
-        </div>
-
-        {!noGenderFilterSports.includes(sport) && (
-          <div className="tabs">
+    <div className="page">
+      <h1>{sports.find(s => s.key === sport)?.label || 'Schedule'}</h1>
+      
+      {/* Sport Selection Tabs */}
+      <div className="tabs">
+        {sports.map(s => (
+          <button key={s.key} className={sport === s.key ? "active" : ""} onClick={() => setSport(s.key)}>
+            {s.label}
+          </button>
+        ))}
+      </div>
+      
+      {/* Gender Filter Tabs */}
+      {!noGenderFilterSports.includes(sport) && (
+        <div className="tabs" style={{ marginTop: '20px' }}>
             <button className={gender === "men" ? "active" : ""} onClick={() => setGender("men")}>Men</button>
             <button className={gender === "women" ? "active" : ""} onClick={() => setGender("women")}>Women</button>
           </div>
         )}
 
-        {error && <div style={{ color: "#ef4444", textAlign: "center" }}>{error}</div>}
+      {error && <div style={{ color: "#ef4444", textAlign: "center" }}>{error}</div>}
 
-        <div className="schedule">
-          {allDates.map(date => {
-            const filteredMatches = groupedMatches[date].filter(m => !isPlaceholderMatch(m));
-            if (date === "TBA" || filteredMatches.length === 0) return null;
-            dayCounter++;
-            return (
-              <div key={date} className="schedule-date-group">
-                <div className="schedule-date-header">
-                  DAY {dayCounter} <span style={{color: "#0f172a", marginLeft: "8px"}}>/ {formatDate(date)}</span>
-                </div>
-                <table className="schedule-table">
-                  <tbody>
-                    {filteredMatches.map((m, idx) => (
-                      <tr key={idx}>
-                        <td>{idx + 1}</td>
-                        <td className="match-teams">
-                          <span>{m.TeamA}</span>
-                          <span className="vs-badge">VS</span>
-                          <span>{m.TeamB}</span>
-                        </td>
-                        <td>
-                           <span className="match-time">{m.Time}</span>
-                        </td>
-                        <td>{m.Venue}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+      <div className="schedule">
+        {allDates.map(date => {
+          const filteredMatches = groupedMatches[date].filter(m => !isPlaceholderMatch(m));
+          if (date === "TBA" || filteredMatches.length === 0) return null;
+          dayCounter++;
+          return (
+            <div key={date} className="schedule-date-group">
+              <div className="schedule-date-header">
+                DAY {dayCounter} <span style={{color: "#0f172a", marginLeft: "8px"}}>/ {formatDate(date)}</span>
               </div>
-            );
-          })}
-        </div>
+              <table className="schedule-table">
+                <tbody>
+                  {filteredMatches.map((m, idx) => (
+                    <tr key={idx}>
+                      <td>{idx + 1}</td>
+                      <td className="match-teams">
+                        <span>{m.TeamA}</span>
+                        <span className="vs-badge">VS</span>
+                        <span>{m.TeamB}</span>
+                      </td>
+                      <td>
+                         <span className="match-time">{m.Time}</span>
+                      </td>
+                      <td>{m.Venue}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 }

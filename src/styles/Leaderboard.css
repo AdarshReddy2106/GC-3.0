@@ -149,52 +149,56 @@
   padding: 100px 60px 60px 60px;
   min-height: 100vh;
   max-width: 100%;
-  background: #f1f5f9;
+  background: #050505;
+  color: white;
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
+  font-size: 5rem;
   line-height: 1;
-  color: #0f172a;
+  color: white;
   margin-bottom: 40px;
   text-transform: uppercase;
+  letter-spacing: 8px;
+}
+
+h1 span {
+  color: #e11d48;
 }
 
 /* ---------- Tabs ---------- */
 .tabs {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 40px;
-  background: #fff;
-  padding: 6px;
-  border-radius: 12px;
   width: fit-content;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .tabs button {
-  padding: 10px 32px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: #64748b;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
+  padding: 15px 35px;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .tabs button:hover {
-  color: #0f172a;
-  background: #f1f5f9;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .tabs button.active {
-  background: #0f172a; /* Black active tab */
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  color: white;
+  background: #e11d48;
+  border-color: #e11d48;
 }
 
 /* ---------- Leaderboard Tables ---------- */
@@ -207,91 +211,108 @@ h1 {
 /* Pool Title */
 h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
-  color: #e11d48; /* Red Accent for headers */
-  margin: 0 0 16px 4px !important;
-  letter-spacing: 1px;
+  font-size: 2rem;
+  color: #e11d48;
+  margin: 0 0 20px 0 !important;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .leaderboard {
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 16px;
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 .leaderboard thead {
-  background: #1e293b; /* Dark Header */
+  background: rgba(225, 29, 72, 0.1);
 }
 
 .leaderboard th {
   padding: 20px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
   font-size: 0.85rem;
-  color: #f8fafc;
-  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 2px;
   text-transform: uppercase;
-  border-bottom: none;
+  border-bottom: 2px solid rgba(225, 29, 72, 0.3);
 }
 
 .leaderboard tbody tr {
-  border-bottom: 1px solid #f1f5f9;
-  transition: all 0.2s;
+  background: linear-gradient(90deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+  border-bottom: 2px solid #050505;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.leaderboard tbody tr:last-child {
-  border-bottom: none;
+.leaderboard tbody tr::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: #e11d48;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
 .leaderboard tbody tr:hover {
-  background: #f8fafc;
+  background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
+  transform: scale(1.005);
+}
+
+.leaderboard tbody tr:hover::before {
+  transform: scaleY(1);
 }
 
 /* Highlight top 2 positions for semi-finalists */
 .leaderboard tbody tr:nth-child(1) {
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.15) 0%, #111 50%, #0a0a0a 100%);
   border-left: 4px solid #fbbf24;
 }
 
 .leaderboard tbody tr:nth-child(2) {
-  background: linear-gradient(90deg, rgba(192, 192, 192, 0.12) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.15) 0%, #111 50%, #0a0a0a 100%);
   border-left: 4px solid #94a3b8;
 }
 
 .leaderboard tbody tr:nth-child(1):hover,
 .leaderboard tbody tr:nth-child(2):hover {
-  background: #fef3c7;
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.2) 0%, #1a1a1a 50%, #111 100%);
 }
 
 .leaderboard td {
-  padding: 20px;
+  padding: 24px 20px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  color: #334155;
-  font-size: 1rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  color: white;
+  font-size: 1.1rem;
 }
 
 /* Rank Column */
 .leaderboard td:first-child {
+  font-family: 'Bebas Neue', sans-serif;
   font-weight: 700;
-  font-size: 1.1rem;
-  color: #64748b;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
 }
 
 .leaderboard tbody tr:nth-child(1) td:first-child {
   color: #fbbf24;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
 }
 
 .leaderboard tbody tr:nth-child(2) td:first-child {
   color: #94a3b8;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
 }
 
 /* Responsive */
@@ -322,19 +343,24 @@ h2 {
   }
   
   h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
   
   .tabs button {
-    padding: 10px 24px;
-    font-size: 0.9rem;
+    padding: 12px 28px;
+    font-size: 0.85rem;
+  }
+  
+  .leaderboard td {
+    padding: 20px 16px;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 768px) {
   .page {
     margin-left: 0;
-    padding: 90px 24px 40px;
+    padding: 90px 20px 40px;
   }
   
   .sidebar {
@@ -388,7 +414,8 @@ h2 {
   }
   
   h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    letter-spacing: 4px;
   }
   
   .tabs {
@@ -396,49 +423,72 @@ h2 {
   }
   
   .tabs button {
-    padding: 10px 20px;
-    font-size: 0.85rem;
+    padding: 12px 24px;
+    font-size: 0.8rem;
+  }
+  
+  .leaderboard td {
+    padding: 18px 14px;
+    font-size: 0.95rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 640px) {
   .page {
-    padding: 80px 20px 80px;
+    padding: 80px 16px 80px;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 30px;
+    letter-spacing: 3px;
   }
   
   .tabs {
     width: 100%;
+    gap: 6px;
   }
   
   .tabs button {
     flex: 1;
-    padding: 8px 12px;
-    font-size: 0.8rem;
+    padding: 10px 14px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
   }
   
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
   }
   
   .leaderboard {
     display: block;
     overflow-x: auto;
-    border-radius: 12px;
+    border-radius: 0;
   }
   
   .leaderboard th, 
   .leaderboard td {
-    padding: 14px 10px;
-    font-size: 0.85rem;
+    padding: 16px 12px;
+    font-size: 0.9rem;
   }
   
   .leaderboard th {
     font-size: 0.75rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .leaderboard td:first-child {
+    font-size: 1.4rem;
+  }
+  
+  .leaderboard tbody tr:nth-child(1) td:first-child,
+  .leaderboard tbody tr:nth-child(2) td:first-child {
+    font-size: 1.6rem;
   }
   
   .sidebar-sport {
@@ -452,22 +502,41 @@ h2 {
 
 @media (max-width: 480px) {
   .page {
-    padding: 70px 16px 80px;
+    padding: 70px 12px 80px;
   }
   
   h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
   
   .tabs button {
-    font-size: 0.75rem;
-    padding: 8px 10px;
+    font-size: 0.65rem;
+    padding: 9px 10px;
+    letter-spacing: 0.5px;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
   }
   
   .leaderboard th,
   .leaderboard td {
-    padding: 12px 8px;
-    font-size: 0.8rem;
+    padding: 14px 8px;
+    font-size: 0.85rem;
+  }
+  
+  .leaderboard th {
+    font-size: 0.7rem;
+  }
+  
+  .leaderboard td:first-child {
+    font-size: 1.3rem;
+  }
+  
+  .leaderboard tbody tr:nth-child(1) td:first-child,
+  .leaderboard tbody tr:nth-child(2) td:first-child {
+    font-size: 1.5rem;
   }
   
   .sidebar {
