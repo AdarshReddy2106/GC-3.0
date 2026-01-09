@@ -1,5 +1,8 @@
 /* Schedule.css */
 
+/* Import shared navbar styles */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap');
+
 /* Reuse basic layout from Leaderboard for consistency */
 .page {
   margin-left: 280px;

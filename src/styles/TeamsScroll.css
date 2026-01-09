@@ -1,9 +1,32 @@
 .teams-scroll-section {
   width: 100%;
-  padding: 60px 0;
-  background: hsl(var(--background));
+  padding: 80px 0;
+  background: #f5f5f5;
   overflow: hidden;
   position: relative;
+}
+
+.teams-scroll-header {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  color: #666;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.teams-count {
+  color: #333;
+}
+
+.teams-separator {
+  margin: 0 12px;
+  color: #999;
+}
+
+.teams-tagline {
+  color: #333;
 }
 
 .teams-scroll-section::before,
@@ -12,19 +35,19 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 150px;
+  width: 200px;
   z-index: 2;
   pointer-events: none;
 }
 
 .teams-scroll-section::before {
   left: 0;
-  background: linear-gradient(90deg, hsl(var(--background)) 0%, transparent 100%);
+  background: linear-gradient(90deg, #f5f5f5 0%, transparent 100%);
 }
 
 .teams-scroll-section::after {
   right: 0;
-  background: linear-gradient(270deg, hsl(var(--background)) 0%, transparent 100%);
+  background: linear-gradient(270deg, #f5f5f5 0%, transparent 100%);
 }
 
 .teams-scroll-container {
@@ -34,9 +57,10 @@
 
 .teams-scroll-track {
   display: flex;
-  gap: 40px;
-  animation: scroll 10s linear infinite;
+  gap: 60px;
+  animation: scroll 40s linear infinite;
   will-change: transform;
+  align-items: center;
 }
 
 .teams-scroll-track:hover {
@@ -48,89 +72,87 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 3));
   }
 }
 
-.team-card {
+.team-item {
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 24px 32px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  border: 2px solid rgba(0, 255, 135, 0.2);
+  gap: 20px;
   transition: all 0.3s ease;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  min-width: 200px;
 }
 
-.team-card:hover {
-  transform: translateY(-8px) scale(1.05);
-  border-color: #00ff87;
-  background: rgba(0, 255, 135, 0.08);
-  box-shadow: 0 8px 30px rgba(0, 255, 135, 0.3);
+.team-item:hover {
+  transform: scale(1.05);
 }
 
 .team-logo-wrapper {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: white;
   border-radius: 50%;
-  padding: 12px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-.team-card:hover .team-logo-wrapper {
-  background: rgba(0, 255, 135, 0.1);
-  box-shadow: 0 0 30px rgba(0, 255, 135, 0.3);
+.team-item:hover .team-logo-wrapper {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: rotate(5deg);
 }
 
 .team-logo {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
   transition: all 0.3s ease;
-}
-
-.team-card:hover .team-logo {
-  filter: drop-shadow(0 0 20px rgba(0, 255, 135, 0.6));
-  transform: scale(1.1);
 }
 
 .team-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   letter-spacing: 2px;
-  color: #000000;
-  text-align: center;
-  margin: 0;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.team-card:hover .team-name {
-  color: #00ff87;
-  text-shadow: 0 0 20px rgba(0, 255, 135, 0.5);
+.team-item:hover .team-name {
+  color: #333;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .teams-scroll-section {
-    padding: 40px 0;
+    padding: 60px 0;
+  }
+  
+  .teams-scroll-header {
+    font-size: 1rem;
+    margin-bottom: 30px;
   }
 
-  .team-card {
-    min-width: 160px;
-    padding: 20px 24px;
-    gap: 12px;
+  .team-item {
+    gap: 16px;
   }
+
+  .team-logo-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .team-name {
+    font-size: 1.2rem;
+  }
+}
 
   .team-logo-wrapper {
     width: 80px;

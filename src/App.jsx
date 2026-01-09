@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Schedule from './pages/Schedule';
 import Leaderboard from './pages/Leaderboard';
+import Contact from './pages/contact';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
     </>

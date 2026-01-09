@@ -15,15 +15,20 @@ const teams = [
 export default function TeamsScroll() {
   return (
     <section className="teams-scroll-section">
+      <div className="teams-scroll-header">
+        <span className="teams-count">8 TEAMS</span>
+        <span className="teams-separator">•</span>
+        <span className="teams-tagline">ONE SPIRIT</span>
+      </div>
       <div className="teams-scroll-container">
         <div className="teams-scroll-track">
-          {/* Render teams twice for seamless loop */}
-          {[...teams, ...teams].map((team, index) => (
-            <div key={index} className="team-card">
+          {/* Render teams multiple times for seamless loop */}
+          {[...teams, ...teams, ...teams].map((team, index) => (
+            <div key={index} className="team-item">
               <div className="team-logo-wrapper">
                 <img src={team.logo} alt={team.name} className="team-logo" />
               </div>
-              <h3 className="team-name">{team.name}</h3>
+              <span className="team-name">{team.name.toUpperCase()}</span>
             </div>
           ))}
         </div>
