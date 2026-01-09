@@ -346,34 +346,40 @@ main { display: block; }
 @media (max-width: 768px) {
   .navbar {
     top: 15px;
-    gap: 4px;
-    padding: 5px 8px;
+    gap: 3px;
+    padding: 4px 6px;
   }
   
   .nav-logo {
-    padding: 6px 12px;
-    margin-right: 4px;
+    padding: 6px 10px;
+    margin-right: 3px;
   }
   
   .nav-logo .logo-text {
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 1.5px;
   }
   
   .nav-link {
-    padding: 8px 16px;
-    font-size: 0.7rem;
+    padding: 8px 12px;
+    font-size: 0.65rem;
+    letter-spacing: 0.8px;
+  }
+  
+  .bg-watermark {
+    font-size: 40vw;
+    letter-spacing: 10px;
   }
   
   .main-title h1 {
-    font-size: 18vw;
+    font-size: 20vw;
     letter-spacing: 8px;
     -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
   }
   
   .left-info,
   .right-info {
-    top: 36%;
+    top: 40%;
   }
   
   .left-info {
@@ -386,28 +392,142 @@ main { display: block; }
   
   .first-strike,
   .tomorrow-text {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .valorant-text,
   .begins-text {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
   }
   
   .character {
-    height: 70vh;
+    height: 65vh;
+    bottom: 50px;
+  }
+  
+  .character img {
+    height: 100%;
   }
   
   .ticker-top {
     top: 70px;
   }
   
+  .ticker-bottom {
+    bottom: 50px;
+  }
+  
   .ticker-text {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    padding: 0 20px;
+  }
+  
+  .fire-container {
+    height: 200px;
   }
 }
 
-/* Contact Page Styles */
+@media (max-width: 480px) {
+  .navbar {
+    top: 10px;
+    padding: 4px 6px;
+    gap: 2px;
+  }
+  
+  .nav-logo {
+    padding: 5px 8px;
+    margin-right: 2px;
+  }
+  
+  .nav-logo .logo-text {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.6rem;
+  }
+  
+  .main-title h1 {
+    font-size: 22vw;
+  }
+  
+  .first-strike,
+  .tomorrow-text {
+    font-size: 1.5rem;
+  }
+  
+  .valorant-logo svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .character {
+    height: 55vh;
+  }
+}
+
+/* Contact Page Responsive */
+@media (max-width: 968px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .section-header h2 {
+    font-size: 2.5rem;
+  }
+  
+  .map-container {
+    min-height: 350px;
+  }
+  
+  .contact-section {
+    padding: 60px 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 40px 20px;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .social-links {
+    gap: 10px;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .info-card {
+    padding: 20px;
+  }
+  
+  .info-content {
+    padding-left: 0;
+    padding-top: 10px;
+  }
+  
+  .map-section {
+    padding: 20px;
+  }
+  
+  .map-container {
+    min-height: 300px;
+  }
+}
 .contact-page {
   min-height: 100vh;
   background: #0a0e13;

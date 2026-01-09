@@ -231,18 +231,132 @@ h1 {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .page { 
+    margin-left: 80px;
+    padding: 100px 40px 60px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  .schedule-table td {
+    padding: 16px 20px;
+  }
+  
+  .match-teams {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 900px) {
-  .page { margin-left: 80px; }
-  .match-card { grid-template-columns: 1fr; gap: 16px; text-align: center; }
-  .match-card-teams { justify-content: center; }
-  .match-card-meta { text-align: center; }
-  .schedule-table td { display: block; text-align: center; padding: 10px; }
-  .schedule-table td:first-child { border-radius: 12px 12px 0 0; background: #f8fafc; }
-  .schedule-table td:last-child { border-radius: 0 0 12px 12px; }
+  .page { 
+    margin-left: 0;
+    padding: 100px 30px 60px;
+  }
+  
+  .schedule-table {
+    display: block;
+  }
+  
+  .schedule-table tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+  
+  .schedule-table td {
+    display: block;
+    text-align: left;
+    padding: 8px 0;
+    border-radius: 0 !important;
+  }
+  
+  .schedule-table td:first-child {
+    font-size: 0.85rem;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .match-teams {
+    display: block;
+  }
+  
+  .vs-badge {
+    display: block;
+    margin: 8px 0;
+  }
+  
+  .schedule-table td:last-child {
+    text-align: left;
+    margin-top: 8px;
+  }
 }
 
 @media (max-width: 600px) {
-  .page { margin-left: 0; padding: 80px 16px; }
-  .match-teams { display: flex; flex-direction: column; gap: 4px; }
-  .vs-badge { margin: 4px 0; align-self: center; }
+  .page { 
+    padding: 90px 20px 40px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .tabs {
+    padding: 4px;
+    gap: 6px;
+  }
+  
+  .tabs button {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .schedule-date-header {
+    font-size: 1.2rem;
+  }
+  
+  .match-teams {
+    font-size: 0.95rem;
+  }
+  
+  .match-time {
+    font-size: 1.1rem;
+    padding: 5px 14px;
+  }
+  
+  .schedule {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 80px 16px 40px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .tabs {
+    width: 100%;
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .schedule-table tr {
+    padding: 12px;
+  }
+  
+  .match-teams {
+    font-size: 0.9rem;
+  }
 }

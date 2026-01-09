@@ -297,7 +297,7 @@ h2 {
 /* Responsive */
 @media (max-width: 1024px) {
   .page {
-    margin-left: 80px; /* Shrink for tablet */
+    margin-left: 80px;
     padding: 100px 32px 40px;
   }
   
@@ -305,42 +305,186 @@ h2 {
     width: 80px;
   }
   
-  .sidebar-title, .sidebar-sport span {
+  .sidebar-title, 
+  .sidebar-subtitle,
+  .sport-label {
     display: none;
   }
   
   .sidebar-sport {
     justify-content: center;
-    padding: 20px;
+    padding: 16px;
   }
   
   .sidebar-sport img {
     width: 28px;
     height: 28px;
   }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  .tabs button {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    margin-left: 0;
+    padding: 90px 24px 40px;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 12px;
+    overflow-x: auto;
+    border-right: none;
+    border-top: 1px solid rgba(225, 29, 72, 0.2);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar-title,
+  .sidebar-subtitle {
+    display: none;
+  }
+  
+  .sidebar-sports {
+    flex-direction: row;
+    padding: 0;
+    gap: 8px;
+  }
+  
+  .sidebar-sport {
+    flex-direction: column;
+    padding: 12px 16px;
+    gap: 6px;
+  }
+  
+  .sidebar-sport img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .sport-label {
+    display: block;
+    font-size: 0.7rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .sidebar-sport:hover,
+  .sidebar-sport.selected {
+    padding-left: 16px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tabs button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 640px) {
   .page {
-    margin-left: 0;
-    padding: 90px 20px 40px;
-  }
-  
-  .sidebar {
-    display: none; /* Consider a bottom nav or hamburger for mobile, or keep it simple */
+    padding: 80px 20px 80px;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .tabs {
+    width: 100%;
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
   }
   
   .leaderboard {
     display: block;
     overflow-x: auto;
+    border-radius: 12px;
   }
   
-  .leaderboard th, .leaderboard td {
-    padding: 16px 12px;
-    font-size: 0.9rem;
+  .leaderboard th, 
+  .leaderboard td {
+    padding: 14px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .leaderboard th {
+    font-size: 0.75rem;
+  }
+  
+  .sidebar-sport {
+    padding: 10px 12px;
+  }
+  
+  .sport-label {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 70px 16px 80px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .tabs button {
+    font-size: 0.75rem;
+    padding: 8px 10px;
+  }
+  
+  .leaderboard th,
+  .leaderboard td {
+    padding: 12px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .sidebar {
+    padding: 10px;
+  }
+  
+  .sidebar-sports {
+    gap: 6px;
+  }
+  
+  .sidebar-sport {
+    padding: 8px 10px;
+    min-width: 60px;
+  }
+  
+  .sidebar-sport img {
+    width: 20px;
+    height: 20px;
   }
 }

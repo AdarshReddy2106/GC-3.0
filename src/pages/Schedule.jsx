@@ -74,7 +74,7 @@ export default function Schedule() {
   useEffect(() => {
     if (sport === "full") return;
     setError(null);
-    fetch(`https://gcbackend.vercel.app/api/${sport}/schedule/${gender}`)
+    fetch(`https://gc-backend-9bj6.onrender.com/api/${sport}/schedule/${gender}`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch schedule");
         return res.json();
@@ -90,7 +90,7 @@ export default function Schedule() {
       .filter(s => s.key !== "full")
       .map(s => {
         const g = menOnlySports.includes(s.key) ? "men" : "men";
-        return fetch(`https://gcbackend.vercel.app/api/${s.key}/schedule/${g}`)
+        return fetch(`https://gc-backend-9bj6.onrender.com/api/${s.key}/schedule/${g}`)
           .then(res => res.ok ? res.json() : [])
           .then(data =>
             (Array.isArray(data) ? data : []).map(m => ({
