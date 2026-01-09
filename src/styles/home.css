@@ -14,72 +14,6 @@ body {
   overflow-x: hidden;
 }
 main { display: block; }
-
-/* Navbar (shared) */
-.navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background: linear-gradient(135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.04) 50%,
-    rgba(255, 255, 255, 0.06) 100%);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  padding: 8px 18px;
-  margin-right: 6px;
-  cursor: pointer;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nav-logo .logo-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-  color: rgb(226, 36, 36);
-  font-weight: 400;
-}
-
-.nav-link {
-  position: relative;
-  padding: 10px 22px;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(247, 20, 20, 0.75);
-  text-decoration: none;
-  border-radius: 30px;
-  transition: all 0.25s ease;
-  white-space: nowrap;
-}
-
-.nav-link:hover { 
-  color: rgb(173, 15, 131); 
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.nav-link.active {
-  background: rgb(175, 30, 30);
-  color: white;
-  box-shadow: 0 2px 12px rgba(200, 60, 80, 0.4);
-}
-
 /* HOME styles (hero, tickers, fire, about, feature, highlights, fixtures) */
 .hero-section {
   position: relative;
@@ -335,12 +269,6 @@ main { display: block; }
 
 /* CONTACT styles (from contact.html) */
 .contact-hero-bg { background: url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=1920&q=80') center/cover; }
-/* (All remaining contact.html styles: contact-section, form, cards, social, map, responsive, etc.) */
-
-/* LEADERBOARD styles (from leaderboard.html) */
-/* (All leaderboard styles: hero, particles, podium, table, tabs, responsive, etc.) */
-
-/* Responsive rules from all pages are included as in originals */
 
 /* Mobile responsive styles */
 @media (max-width: 768px) {
@@ -767,8 +695,1151 @@ main { display: block; }
   }
 }
 
-/* NOTE:
-For brevity, the rest of the CSS rules from home.html, schedule.html,
-leaderboard.html, and contact.html should be appended here exactly as in your originals.
-No rule changes are needed—just paste them all below this note to have a complete stylesheet.
-*/
+/* ========================================
+   HOME PAGE STYLES
+   ======================================== */
+
+/* --- HERO SECTION --- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- BACKGROUND WATERMARKS --- */
+.bg-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 35vw;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+    letter-spacing: 20px;
+    white-space: nowrap;
+}
+
+.bg-sen-outline {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28vw;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.05);
+    z-index: 0;
+    letter-spacing: 30px;
+}
+
+/* --- TOP TICKER --- */
+.ticker-top {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.ticker-track {
+    display: flex;
+    gap: 60px;
+    animation: tickerScroll 20s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-text {
+    font-family: 'Teko', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(180, 180, 180, 0.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+@keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- BOTTOM TICKER --- */
+.ticker-bottom {
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 15;
+}
+
+.ticker-bottom .ticker-track {
+    animation: tickerScrollReverse 25s linear infinite;
+}
+
+.ticker-bottom .ticker-text {
+    color: rgba(200, 150, 150, 0.4);
+    font-size: 1rem;
+}
+
+@keyframes tickerScrollReverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* --- MAIN TITLE --- */
+.main-title {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    text-align: center;
+}
+
+.main-title h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12vw;
+    letter-spacing: 15px;
+    color: transparent;
+    -webkit-text-stroke: 3px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+    line-height: 0.9;
+}
+
+/* --- LEFT INFO --- */
+.left-info {
+    position: absolute;
+    left: 8%;
+    top: 42%;
+    z-index: 20;
+    text-align: left;
+}
+
+.valorant-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.valorant-logo svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+.valorant-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: white;
+}
+
+.first-strike {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    color: white;
+    line-height: 1;
+}
+
+/* --- RIGHT INFO --- */
+.right-info {
+    position: absolute;
+    right: 8%;
+    top: 42%;
+    z-index: 20;
+    text-align: right;
+}
+
+.begins-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(200, 200, 200, 0.9);
+    text-transform: uppercase;
+}
+
+.tomorrow-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    color: white;
+    line-height: 1;
+}
+
+/* --- CHARACTER --- */
+.character {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+    height: 85vh;
+    max-height: 900px;
+}
+
+.character img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.8));
+}
+
+/* --- FIRE EFFECT --- */
+.fire-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    z-index: 10;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.fire-glow {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top,
+        rgba(180, 30, 50, 1) 0%,
+        rgba(150, 25, 40, 0.9) 15%,
+        rgba(120, 20, 35, 0.7) 30%,
+        rgba(80, 15, 25, 0.4) 50%,
+        rgba(40, 10, 15, 0.2) 70%,
+        transparent 100%);
+}
+
+.flames {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+}
+
+.flames::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse 4% 45% at 3% 100%, rgba(200, 40, 60, 0.9) 0%, rgba(150, 30, 45, 0.5) 50%, transparent 80%),
+        radial-gradient(ellipse 5% 55% at 8% 100%, rgba(180, 35, 55, 0.85) 0%, rgba(140, 28, 42, 0.4) 55%, transparent 85%),
+        radial-gradient(ellipse 6% 65% at 14% 100%, rgba(200, 45, 65, 0.9) 0%, rgba(160, 35, 50, 0.5) 50%, transparent 80%),
+        radial-gradient(ellipse 4% 50% at 20% 100%, rgba(170, 30, 50, 0.8) 0%, rgba(130, 25, 40, 0.4) 55%, transparent 85%),
+        radial-gradient(ellipse 5% 60% at 26% 100%, rgba(190, 40, 60, 0.85) 0%, rgba(150, 32, 48, 0.45) 50%, transparent 80%),
+        radial-gradient(ellipse 7% 75% at 33% 100%, rgba(210, 50, 70, 0.9) 0%, rgba(170, 40, 55, 0.5) 50%, transparent 85%),
+        radial-gradient(ellipse 5% 55% at 40% 100%, rgba(185, 38, 58, 0.8) 0%, rgba(145, 30, 45, 0.4) 55%, transparent 80%),
+        radial-gradient(ellipse 6% 80% at 47% 100%, rgba(200, 45, 65, 0.95) 0%, rgba(160, 36, 52, 0.5) 50%, transparent 85%),
+        radial-gradient(ellipse 8% 90% at 53% 100%, rgba(220, 55, 75, 0.95) 0%, rgba(180, 45, 60, 0.55) 45%, transparent 85%),
+        radial-gradient(ellipse 6% 70% at 60% 100%, rgba(195, 42, 62, 0.9) 0%, rgba(155, 34, 50, 0.45) 50%, transparent 80%),
+        radial-gradient(ellipse 5% 60% at 67% 100%, rgba(185, 38, 58, 0.85) 0%, rgba(145, 30, 46, 0.4) 55%, transparent 85%),
+        radial-gradient(ellipse 7% 75% at 74% 100%, rgba(205, 48, 68, 0.9) 0%, rgba(165, 38, 54, 0.5) 50%, transparent 85%),
+        radial-gradient(ellipse 5% 55% at 80% 100%, rgba(175, 35, 55, 0.8) 0%, rgba(135, 28, 44, 0.4) 55%, transparent 85%),
+        radial-gradient(ellipse 6% 65% at 86% 100%, rgba(195, 42, 62, 0.85) 0%, rgba(155, 34, 50, 0.45) 50%, transparent 80%),
+        radial-gradient(ellipse 5% 55% at 92% 100%, rgba(180, 36, 56, 0.8) 0%, rgba(140, 29, 45, 0.4) 55%, transparent 85%),
+        radial-gradient(ellipse 4% 45% at 97% 100%, rgba(170, 32, 52, 0.75) 0%, rgba(130, 26, 42, 0.35) 50%, transparent 80%);
+    animation: flameFlicker 3s ease-in-out infinite;
+}
+
+.flames::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse 5% 50% at 5% 100%, rgba(190, 38, 58, 0.7) 0%, rgba(150, 30, 46, 0.35) 55%, transparent 85%),
+        radial-gradient(ellipse 6% 60% at 12% 100%, rgba(200, 42, 62, 0.75) 0%, rgba(160, 34, 50, 0.4) 50%, transparent 80%),
+        radial-gradient(ellipse 5% 55% at 22% 100%, rgba(180, 35, 55, 0.7) 0%, rgba(140, 28, 44, 0.35) 55%, transparent 85%),
+        radial-gradient(ellipse 7% 70% at 30% 100%, rgba(210, 48, 68, 0.8) 0%, rgba(170, 38, 54, 0.45) 50%, transparent 80%),
+        radial-gradient(ellipse 6% 65% at 38% 100%, rgba(195, 40, 60, 0.75) 0%, rgba(155, 32, 48, 0.4) 55%, transparent 85%),
+        radial-gradient(ellipse 8% 85% at 50% 100%, rgba(215, 52, 72, 0.85) 0%, rgba(175, 42, 58, 0.5) 45%, transparent 85%),
+        radial-gradient(ellipse 6% 60% at 62% 100%, rgba(190, 38, 58, 0.75) 0%, rgba(150, 30, 46, 0.4) 50%, transparent 80%),
+        radial-gradient(ellipse 7% 70% at 72% 100%, rgba(205, 45, 65, 0.8) 0%, rgba(165, 36, 52, 0.45) 50%, transparent 85%),
+        radial-gradient(ellipse 5% 55% at 82% 100%, rgba(185, 36, 56, 0.7) 0%, rgba(145, 29, 45, 0.35) 55%, transparent 80%),
+        radial-gradient(ellipse 6% 60% at 90% 100%, rgba(195, 40, 60, 0.75) 0%, rgba(155, 32, 48, 0.4) 50%, transparent 85%);
+    animation: flameFlicker2 2.5s ease-in-out infinite reverse;
+}
+
+@keyframes flameFlicker {
+    0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+    33% { transform: scaleY(1.05) scaleX(0.98); opacity: 0.95; }
+    66% { transform: scaleY(0.97) scaleX(1.02); opacity: 1; }
+}
+
+@keyframes flameFlicker2 {
+    0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.9; }
+    50% { transform: scaleY(1.08) scaleX(0.97); opacity: 1; }
+}
+
+.smoke {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+    height: 250px;
+}
+
+.smoke::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse 20% 50% at 15% 100%, rgba(30, 15, 20, 0.6) 0%, rgba(20, 10, 15, 0.3) 50%, transparent 80%),
+        radial-gradient(ellipse 25% 60% at 40% 100%, rgba(35, 18, 25, 0.5) 0%, rgba(25, 12, 18, 0.25) 50%, transparent 85%),
+        radial-gradient(ellipse 22% 55% at 65% 100%, rgba(32, 16, 22, 0.55) 0%, rgba(22, 11, 16, 0.28) 50%, transparent 80%),
+        radial-gradient(ellipse 18% 45% at 85% 100%, rgba(28, 14, 20, 0.5) 0%, rgba(18, 9, 14, 0.25) 50%, transparent 85%);
+    animation: smokeRise 8s ease-in-out infinite;
+}
+
+.smoke::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse 18% 45% at 25% 100%, rgba(25, 12, 18, 0.5) 0%, rgba(15, 8, 12, 0.25) 55%, transparent 85%),
+        radial-gradient(ellipse 22% 55% at 55% 100%, rgba(30, 15, 22, 0.45) 0%, rgba(20, 10, 15, 0.22) 50%, transparent 80%),
+        radial-gradient(ellipse 20% 50% at 78% 100%, rgba(28, 14, 20, 0.5) 0%, rgba(18, 9, 14, 0.25) 55%, transparent 85%);
+    animation: smokeRise2 6s ease-in-out infinite reverse;
+}
+
+@keyframes smokeRise {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(-25px); opacity: 0.9; }
+}
+
+@keyframes smokeRise2 {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-20px); opacity: 0.8; }
+}
+
+.embers {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 11;
+}
+
+.ember {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 120, 100, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 0 4px 1px rgba(255, 80, 80, 0.8);
+    animation: emberFloat 4s ease-out infinite;
+}
+
+.ember:nth-child(1) { left: 8%; animation-delay: 0s; animation-duration: 3.5s; }
+.ember:nth-child(2) { left: 18%; animation-delay: 0.6s; animation-duration: 4s; }
+.ember:nth-child(3) { left: 28%; animation-delay: 1.2s; animation-duration: 3.8s; }
+.ember:nth-child(4) { left: 38%; animation-delay: 0.3s; animation-duration: 4.2s; }
+.ember:nth-child(5) { left: 48%; animation-delay: 0.9s; animation-duration: 3.6s; }
+.ember:nth-child(6) { left: 58%; animation-delay: 1.5s; animation-duration: 4s; }
+.ember:nth-child(7) { left: 68%; animation-delay: 0.4s; animation-duration: 3.9s; }
+.ember:nth-child(8) { left: 78%; animation-delay: 1.1s; animation-duration: 4.1s; }
+.ember:nth-child(9) { left: 88%; animation-delay: 0.7s; animation-duration: 3.7s; }
+
+@keyframes emberFloat {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-150px) translateX(10px) scale(0.3); opacity: 0; }
+}
+
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+.about-section {
+    position: relative;
+    background: #000;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* About Hero */
+.about-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.95) 100%),
+        linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.95) 100%);
+}
+
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+}
+
+.about-tag {
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: #ff6b35;
+}
+
+.about-main-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 6px;
+    line-height: 1.2;
+    color: white;
+    text-transform: uppercase;
+}
+
+.about-main-title span {
+    display: inline;
+    background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 30%, #f4845f 60%, #f27059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* About Content Area */
+.about-content-area {
+    background: #050505;
+    padding: 0 260px;
+    position: relative;
+}
+
+.about-content-area::before {
+    content: 'EXCELLENCE';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15vw;
+    color: rgba(255, 255, 255, 0.015);
+    white-space: nowrap;
+    letter-spacing: 30px;
+    pointer-events: none;
+}
+.about-description {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+}
+
+/* ========================================
+   FEATURED SPORTS SECTION
+   ======================================== */
+.featured-sports-section {
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-sports-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.featured-sports-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.featured-sports-tag {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ff6b35;
+    margin-bottom: 20px;
+}
+
+.featured-sports-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    letter-spacing: 6px;
+    line-height: 1.2;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.featured-sports-title span {
+    color: #3b82f6;
+}
+
+.featured-sports-description {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.featured-sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.sport-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sport-card:hover {
+    transform: translateY(-8px);
+}
+
+.sport-card-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.sport-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+    transition: background 0.3s ease;
+}
+
+.sport-card:hover .sport-card-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%);
+}
+
+.sport-card-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.15);
+    font-weight: bold;
+    z-index: 1;
+}
+
+.sport-card-name {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+    letter-spacing: 3px;
+    z-index: 2;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .featured-sports-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .sport-card-image {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-sports-section {
+        padding: 60px 40px;
+    }
+    
+    .featured-sports-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .sport-card-image {
+        height: 300px;
+    }
+    
+    .sport-card-name {
+        font-size: 2rem;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .sport-card-number {
+        font-size: 4rem;
+    }
+}
+
+/* ========================================
+   PREVIOUS WINNERS SECTION
+   ======================================== */
+.previous-winners-section {
+    background: #0a0a0a;
+    padding: 100px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.previous-winners-section::before {
+    content: 'CHAMPIONS';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15vw;
+    color: rgba(255, 255, 255, 0.015);
+    white-space: nowrap;
+    letter-spacing: 30px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.winners-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.winners-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.winners-tag {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ff6b35;
+    margin-bottom: 20px;
+}
+
+.winners-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    letter-spacing: 6px;
+    line-height: 1.2;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.winners-title span {
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Year Filter */
+.year-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
+}
+
+.year-filter button {
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.year-filter button:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    color: white;
+    background: rgba(251, 191, 36, 0.1);
+}
+
+.year-filter button.active {
+    border-color: #fbbf24;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+    color: #fbbf24;
+}
+
+/* Podium */
+.podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.podium-place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.podium-card {
+    width: 280px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    border: 2px solid;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.podium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.podium-card:hover::before {
+    opacity: 1;
+}
+
+/* First Place */
+.podium-place:nth-child(2) {
+    order: 2;
+}
+
+.podium-place:nth-child(2) .podium-card {
+    width: 320px;
+    padding: 40px 30px;
+    border-color: #fbbf24;
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.3);
+}
+
+.podium-place:nth-child(2) .podium-rank {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+/* Second Place */
+.podium-place:nth-child(1) {
+    order: 1;
+}
+
+.podium-place:nth-child(1) .podium-card {
+    border-color: #94a3b8;
+    box-shadow: 0 0 30px rgba(148, 163, 184, 0.2);
+}
+
+.podium-place:nth-child(1) .podium-rank {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* Third Place */
+.podium-place:nth-child(3) {
+    order: 3;
+}
+
+.podium-place:nth-child(3) .podium-card {
+    border-color: #cd7f32;
+    box-shadow: 0 0 30px rgba(205, 127, 50, 0.2);
+}
+
+.podium-place:nth-child(3) .podium-rank {
+    background: linear-gradient(135deg, #cd7f32 0%, #b8621b 100%);
+}
+
+.podium-rank {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.podium-team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: white;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.podium-points {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.podium-points span {
+    color: #fbbf24;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Other Winners Grid */
+.other-winners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.winner-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.winner-card:hover {
+    border-color: rgba(251, 191, 36, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.15);
+}
+
+.winner-rank {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: #fbbf24;
+    flex-shrink: 0;
+}
+
+.winner-info {
+    flex: 1;
+}
+
+.winner-team {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: white;
+    letter-spacing: 1.5px;
+    margin-bottom: 5px;
+}
+
+.winner-points-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+.winner-points-text span {
+    color: #fbbf24;
+    font-weight: 700;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+    background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+    padding: 80px 60px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #e11d48 50%, transparent 100%);
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-description {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 350px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer-social-link {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social-link:hover {
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.3) 0%, rgba(244, 63, 94, 0.2) 100%);
+    border-color: rgba(225, 29, 72, 0.5);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-column-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: white;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    color: #e11d48;
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-copyright {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom-link {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 600;
+}
+
+.footer-bottom-link:hover {
+    color: #e11d48;
+}
+
+/* Responsive - Winners & Footer */
+@media (max-width: 1024px) {
+    .previous-winners-section {
+        padding: 80px 40px;
+    }
+    
+    .podium-card {
+        width: 240px;
+    }
+    
+    .podium-place:nth-child(2) .podium-card {
+        width: 280px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .previous-winners-section {
+        padding: 60px 30px;
+    }
+    
+    .podium-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .podium-place:nth-child(1),
+    .podium-place:nth-child(2),
+    .podium-place:nth-child(3) {
+        order: 0;
+    }
+    
+    .podium-card,
+    .podium-place:nth-child(2) .podium-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .other-winners-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer {
+        padding: 60px 30px 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .previous-winners-section {
+        padding: 40px 20px;
+    }
+    
+    .winners-title {
+        font-size: 2.5rem;
+    }
+    
+    .year-filter button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .podium-rank {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    
+    .podium-team-name {
+        font-size: 1.5rem;
+    }
+    
+    .footer {
+        padding: 40px 20px 20px;
+    }
+    
+    .footer-logo {
+        font-size: 2.5rem;
+    }
+}

@@ -8,19 +8,28 @@ Main source code directory for the React application.
 #### `/src/components`
 Reusable React components:
 - **Navbar.jsx** - Navigation bar with glassmorphism effect
+- **TeamsScroll.jsx** - Horizontal scrolling teams section
+- **Shuffle.jsx** - Text shuffle animation component
 
 #### `/src/pages`
 Page components for routing:
-- **Home.jsx** - Landing page with hero section, character display, and fire effects
+- **Home.jsx** - Landing page with:
+  - Hero section with character display and fire effects
+  - Teams scroll section
+  - About section
+  - Featured sports section
+  - Previous winners section with podium and year filter
+  - Footer
 - **Schedule.jsx** - Event schedule display
 - **Leaderboard.jsx** - Leaderboard rankings
 - **contact.jsx** - Contact form and information
 
 #### `/src/styles`
 CSS stylesheets:
-- **home.css** - Main stylesheet (navbar, hero, animations, contact, responsive styles)
+- **home.css** - Main stylesheet (navbar, hero, animations, about, featured sports, winners, footer, contact, responsive styles)
 - **Schedule.css** - Schedule page specific styles
 - **Leaderboard.css** - Leaderboard page specific styles
+- **TeamsScroll.css** - Teams scroll component styles
 
 #### Root Files
 - **App.jsx** - Main app component with routing
@@ -78,6 +87,14 @@ Utility functions:
 - **Fire Effects**: Animated flames, smoke, and embers
 - **Ticker Animations**: Scrolling text at top and bottom
 - **Responsive Design**: Mobile-first approach
+
+### CSS Architecture
+- **Scoped Styles**: Each component has scoped class names to prevent conflicts
+- **TeamsScroll**: All classes prefixed with `.teams-scroll-section` or component-specific
+- **Schedule**: All classes scoped to `.schedule-section` or `.page` context
+- **Leaderboard**: Sidebar and page scoped with `.leaderboard-container`
+- **Navbar**: All classes scoped to `.navbar` parent
+- **Naming Convention**: Component-specific prefixes prevent global style bleeding
 
 ---
 

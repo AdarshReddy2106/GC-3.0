@@ -1,17 +1,30 @@
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
 
-const linkClass = ({ isActive }) => `nav-link ${isActive ? 'active' : ''}`;
-
-export default function Navbar() {
+const Navbar = () => {
+  const location = useLocation();
+  
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        <span className="logo-text">GC 2026</span>
+        <span>GC 2026</span>
       </div>
-      <NavLink to="/" className={linkClass} end>HOME</NavLink>
-      <NavLink to="/schedule" className={linkClass}>SCHEDULE</NavLink>
-      <NavLink to="/leaderboard" className={linkClass}>LEADERBOARD</NavLink>
-      <NavLink to="/contact" className={linkClass}>CONTACT</NavLink>
+      <div className="nav-divider"></div>
+      <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>
+        <span>Home</span>
+      </Link>
+      <Link to="/schedule" className={`nav-link ${location.pathname === '/schedule' ? 'active' : ''}`}>
+        <span>Schedule</span>
+      </Link>
+      <Link to="/leaderboard" className={`nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}>
+        <span>Leaderboard</span>
+      </Link>
+      <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>
+        <span>Contact</span>
+      </Link>
     </nav>
   );
-}
+};
+
+export default Navbar;
