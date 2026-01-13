@@ -80,7 +80,7 @@ main { display: block; }
 }
 .main-title h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 12vw;
+  font-size: 9vh;
   letter-spacing: 15px;
   color: transparent;
   -webkit-text-stroke: 3px rgba(255, 255, 255, 0.9);

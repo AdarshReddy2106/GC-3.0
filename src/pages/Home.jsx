@@ -25,7 +25,7 @@ const HeroSection = () => {
 
       {/* Main title */}
       <div className="main-title">
-        <h1>GC 2026</h1>
+        {/* <h1>GC 2026</h1> */}
       </div>
 
       {/* Left info */}
@@ -64,7 +64,7 @@ const HeroSection = () => {
       {/* Right info */}
       <div className="right-info">
         <SplitText
-          text="COMING IN"
+          text="STARTS"
           className="begins-text"
           delay={50}
           duration={0.5}
@@ -76,7 +76,7 @@ const HeroSection = () => {
           rootMargin="-50px"
         />
         <SplitText
-          text="JANUARY"
+          text="JANUARY 30"
           className="tomorrow-text"
           delay={80}
           duration={0.6}
@@ -91,7 +91,7 @@ const HeroSection = () => {
 
       {/* Character */}
       <div className="character">
-        <img src="https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/fullportrait.png" alt="Phoenix" />
+        <img src="/logo.png" alt="Phoenix" />
       </div>
 
       {/* Bottom ticker */}
