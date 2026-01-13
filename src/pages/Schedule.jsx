@@ -100,7 +100,7 @@ const MatchRow = ({ match }) => (
       <div className="team-details">
         <div className="team-name">{match.TeamB}</div>
         <div className="team-record">
-           {match.Category || "General"}
+           {match.Category || ""}
         </div>
       </div>
     </div>
@@ -130,23 +130,48 @@ export default function Schedule() {
     if (sport === "full") {
       const fetches = SPORTS
         .filter(s => s.key !== "full")
-        .map(s => {
-          // Use 'men' schedule for non-gendered sports or default to current gender state
-          const g = NO_GENDER_FILTER_SPORTS.includes(s.key) ? "men" : "men"; 
-          // Note: API for full schedule usually needs to fetch both genders if applicable, 
-          // but for now keeping logic same as original "Full" fetch which seemed to default to Men or general.
-          // To be safe based on your previous code, I'll fetch 'men' as the base for full.
-          
-          return fetch(`https://gc-backend-9bj6.onrender.com/api/${s.key}/schedule/${g}`)
-            .then(res => res.ok ? res.json() : [])
-            .then(data => 
-              (Array.isArray(data) ? data : []).map(m => ({
-                ...m,
-                _sport: s.label,
-                _sportKey: s.key,
-                _icon: s.icon
-              }))
-            );
+        .flatMap(s => {
+          // For sports with gender categories, fetch both men's and women's schedules
+          if (NO_GENDER_FILTER_SPORTS.includes(s.key)) {
+            return [
+              fetch(`https://gc-backend-9bj6.onrender.com/api/${s.key}/schedule/men`)
+                .then(res => res.ok ? res.json() : [])
+                .then(data => 
+                  (Array.isArray(data) ? data : []).map(m => ({
+                    ...m,
+                    _sport: s.label,
+                    _sportKey: s.key,
+                    _icon: s.icon,
+                    Category: m.Category || "Men"
+                  }))
+                )
+            ];
+          } else {
+            return [
+              fetch(`https://gc-backend-9bj6.onrender.com/api/${s.key}/schedule/men`)
+                .then(res => res.ok ? res.json() : [])
+                .then(data => 
+                  (Array.isArray(data) ? data : []).map(m => ({
+                    ...m,
+                    _sport: s.label,
+                    _sportKey: s.key,
+                    _icon: s.icon,
+                    Category: m.Category || "Men"
+                  }))
+                ),
+              fetch(`https://gc-backend-9bj6.onrender.com/api/${s.key}/schedule/women`)
+                .then(res => res.ok ? res.json() : [])
+                .then(data => 
+                  (Array.isArray(data) ? data : []).map(m => ({
+                    ...m,
+                    _sport: s.label,
+                    _sportKey: s.key,
+                    _icon: s.icon,
+                    Category: m.Category || "Women"
+                  }))
+                )
+            ];
+          }
         });
 
       Promise.all(fetches)
@@ -171,7 +196,8 @@ export default function Schedule() {
                 ...m,
                 _sport: currentSportObj?.label,
                 _sportKey: sport,
-                _icon: currentSportObj?.icon
+                _icon: currentSportObj?.icon,
+                Category: m.Category || (effectiveGender === "men" ? "Men" : "Women")
             }));
             processData(enrichedData);
         })

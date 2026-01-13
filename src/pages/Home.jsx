@@ -230,8 +230,8 @@ const FeaturedSportsSection = () => {
     },
     {
       id: 8,
-      name: 'SWIMMING',
-      image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80'
+      name: 'POWERLIFTING',
+      image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80'
     },
     {
       id: 9,
