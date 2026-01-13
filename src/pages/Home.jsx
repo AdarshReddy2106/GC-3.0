@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import '../styles/home.css';
 import TeamsScroll from '../components/TeamsScroll';
 import ScrollReveal from '../components/ScrollReveal';
-import SplitText from '../components/splittext';
+import SplitText from '../components/SplitText';
 
 // Hero Section Component
 const HeroSection = () => {
