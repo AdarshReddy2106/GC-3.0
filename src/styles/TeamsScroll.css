@@ -1,7 +1,7 @@
 .teams-scroll-section {
   width: 100%;
   padding: 80px 0;
-  background: #f5f5f5;
+  background: #050505;
   overflow: hidden;
   position: relative;
 }
@@ -17,7 +17,7 @@
 }
 
 .teams-count {
-  color: #333;
+  color: #ffffff;
 }
 
 .teams-separator {
@@ -26,7 +26,7 @@
 }
 
 .teams-tagline {
-  color: #333;
+  color: #ffffff;
 }
 
 .teams-scroll-section::before,
@@ -40,16 +40,6 @@
   pointer-events: none;
 }
 
-.teams-scroll-section::before {
-  left: 0;
-  background: linear-gradient(90deg, #f5f5f5 0%, transparent 100%);
-}
-
-.teams-scroll-section::after {
-  right: 0;
-  background: linear-gradient(270deg, #f5f5f5 0%, transparent 100%);
-}
-
 .teams-scroll-container {
   width: 100%;
   position: relative;
@@ -58,7 +48,7 @@
 .teams-scroll-track {
   display: flex;
   gap: 60px;
-  animation: teamsScroll 40s linear infinite;
+  animation: teamsScroll 10s linear infinite;
   will-change: transform;
   align-items: center;
 }
@@ -121,7 +111,7 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.4rem;
   letter-spacing: 2px;
-  color: #090606;
+  color: #ffffff;
   font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease;

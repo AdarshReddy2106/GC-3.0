@@ -15,8 +15,8 @@ const sports = [
 function Sidebar({ selectedSport, onSelect }) {
   return (
     <div className="sidebar">
-      <div className="sidebar-title">GC 2026 RESULTS</div>
-      <div className="sidebar-subtitle">Live Standings</div>
+      <div className="sidebar-title">GC 2026</div>
+      <div className="sidebar-subtitle">Leaderboard</div>
       <div className="sidebar-sports">
         {sports.map(s => (
           <div
@@ -57,8 +57,6 @@ export default function Leaderboard() {
     <>
       <Sidebar selectedSport={sport} onSelect={setSport} />
       <div className="page">
-        <h1>Leaderboard</h1>
-        
         {!noGenderFilterSports.includes(sport) && (
           <div className="tabs">
             <button className={gender === "men" ? "active" : ""} onClick={() => setGender("men")}>Men</button>

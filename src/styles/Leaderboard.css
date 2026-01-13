@@ -250,18 +250,6 @@ h2 {
   position: relative;
 }
 
-.leaderboard tbody tr::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 5px;
-  height: 100%;
-  background: #e11d48;
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-}
-
 .leaderboard tbody tr:hover {
   background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
   transform: scale(1.005);
